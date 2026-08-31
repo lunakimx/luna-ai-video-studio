@@ -1,0 +1,29 @@
+name: Validate Luna AI Video Studio
+
+on:
+  push:
+    paths:
+      - 'skills/luna-ai-video-studio/**'
+      - '.github/workflows/validate-luna-ai-video-studio.yml'
+  pull_request:
+    paths:
+      - 'skills/luna-ai-video-studio/**'
+      - '.github/workflows/validate-luna-ai-video-studio.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate skill integrity
+        run: python skills/luna-ai-video-studio/tests/validate_skill.py
