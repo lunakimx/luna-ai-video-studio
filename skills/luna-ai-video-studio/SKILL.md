@@ -1,6 +1,6 @@
 ---
 name: luna-ai-video-studio
-description: Turn short or rough AI-video ideas into production-ready prompts for models such as Seedance, Veo, Kling, Hailuo, Runway, Grok, DomoAI, and other video generators. Use when the user wants to create, revise, continue, or review AI video shots, including character-reference work, cinematic scenes, animation, dialogue, sound, camera direction, continuity, and model-specific prompt adaptation.
+description: Turn short or rough AI-video ideas into production-ready prompts for models such as Seedance, Veo, Kling, Hailuo, Runway, Grok, DomoAI, and other video generators. Use when the user wants to create, revise, continue, review, benchmark, or validate AI video shots, including character-reference work, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.
 ---
 
 # Luna AI Video Studio
@@ -58,6 +58,8 @@ For each request:
 11. Treat ambience, foley, silence, dialogue, and music as filmmaking choices rather than automatic additions.
 12. Adapt prompt density and terminology to the selected video model.
 13. Run silent failure prevention and rewrite weak instructions before output.
+14. When continuity, revision history, or accepted shot state matters, preserve the production ledger instead of rebuilding project state from memory.
+15. When a generated result fails, diagnose and repair the smallest responsible part before increasing prompt complexity.
 
 ## Reference fidelity
 
@@ -167,6 +169,10 @@ Carry the previous shot's final state into the next shot when continuity matters
 
 Do not reset the world between directly connected clips.
 
+For multi-shot, continuity-sensitive, revision-heavy, or reference-sensitive work, read `references/production-ledger.md` and keep a compact internal production ledger.
+
+Update the ledger after an approved prompt, an accepted revision, or a user-approved generated shot. Preserve all locked values unless the user explicitly changes them.
+
 ## Animation
 
 When animation is requested, infer the animation language and direct motion, facial exaggeration, timing, camera behavior, physics, and secondary motion to match it.
@@ -187,6 +193,8 @@ If model capability is uncertain or live verification is unavailable, do not pre
 
 Adapt prompt length, temporal wording, camera language, dialogue density, audio direction, negatives, and simultaneous-action count to the model.
 
+For model-selection and model-specific prompt behavior, read `references/model-adaptation.md` when the named model materially changes execution.
+
 ## Text and graphics
 
 Unless the user requests text, prevent random captions, subtitles, watermarks, logos, interface overlays, gibberish signage, floating typography, and duplicated labels.
@@ -200,6 +208,25 @@ When size matters, show scale through people, architecture, vehicles, windows, t
 When the user requests a partial creature or threat reveal, state exactly what becomes visible and what stays hidden.
 
 Protect mystery. Do not convert a partial reveal into an unintended full reveal.
+
+## Retry and repair
+
+When the user asks to fix a generated result, uploads a failed or imperfect clip, or a previous attempt needs another generation, read `references/retry-repair.md`.
+
+Diagnose the visible failure before rewriting.
+
+Preserve what already works and change the smallest number of prompt elements needed to repair the failure.
+
+If the same failure repeats, simplify in this order:
+
+1. reduce simultaneous actions;
+2. reduce camera complexity;
+3. shorten dialogue;
+4. strengthen positive constraints;
+5. remove unsupported feature dependencies;
+6. rebuild the shot around one dominant action while preserving approved locks.
+
+Do not keep adding adjectives to a prompt that is failing on execution clarity.
 
 ## Silent QA
 
@@ -234,7 +261,26 @@ Rewrite weak instructions before answering.
 
 For deeper directing rules, read `references/directing-standard.md` when the task is complex, multi-shot, continuity-heavy, reference-sensitive, or the user asks for maximum precision.
 
-For model-selection and model-specific prompt behavior, read `references/model-adaptation.md` when the named model materially changes execution.
+## Validation and benchmarking
+
+When the user asks for a score, benchmark, A/B comparison, proof of improvement, production-readiness check, or validation, read `references/evaluation-protocol.md`.
+
+When a repeatable test scene set is useful, read `references/benchmark-scenes.md`.
+
+Keep prompt-level validation separate from generated-output validation.
+
+Do not claim that a system is production-validated because its written prompt rules look strong.
+
+Use these labels accurately:
+
+- `Prompt-validated`: the prompt passed the written evaluation gate.
+- `Output-reviewed`: an actual generated video was inspected.
+- `A/B tested`: comparable generated variants were scored under controlled conditions.
+- `Production-validated`: generated-output evidence exists across a meaningful scene set.
+
+When benchmarking, keep model/version, source references, duration, aspect ratio, resolution tier, and attempt count fixed whenever possible.
+
+Track generation reliability through first-pass success, repair passes, continuity survival, and critical failures when enough attempts exist.
 
 ## Output
 
@@ -254,6 +300,21 @@ For several scenes, organize prompts clearly by scene.
 
 For separate clips, make each clip independently executable while preserving cross-shot continuity.
 
+For revision work, add only when useful:
+
+### FAILURE DIAGNOSIS
+### REVISION PATCH
+### RETRY PROMPT
+
+For continuity review, add only when useful:
+
+### SHOT LEDGER UPDATE
+
+For validation work, add only when useful:
+
+### EVAL REPORT
+### A/B BENCHMARK
+
 ## Review mode
 
 When the user uploads a completed video and asks for feedback, switch to review mode.
@@ -261,6 +322,8 @@ When the user uploads a completed video and asks for feedback, switch to review 
 Inspect reference fidelity, character consistency, composition, camera, movement, environmental motion, physics, acting, dialogue, lip sync, sound, continuity, timing, reveal timing, ending quality, and visible AI artifacts.
 
 Identify the failed behavior precisely. When possible, name the affected moment or time range. Rewrite only what needs correction and preserve everything that already works.
+
+If another attempt is needed, use the retry and repair rules rather than rewriting successful parts of the shot.
 
 ## Revision rule
 
@@ -273,3 +336,5 @@ Treat a revision as the same production being corrected, not a new production be
 Produce the strongest prompt an expert AI video creator would confidently send to generation.
 
 Optimize for clarity, control, continuity, believable motion, model compatibility, visual impact, and generation success rather than prompt length.
+
+Treat reliable retries, continuity survival, and measurable validation as part of production quality, not optional extras.
