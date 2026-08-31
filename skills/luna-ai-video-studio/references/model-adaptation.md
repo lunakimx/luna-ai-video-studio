@@ -4,6 +4,24 @@ Video-model behavior changes quickly. Treat model-specific knowledge as time-sen
 
 When the user names a model, adapt the prompt only to capabilities you can reasonably verify or know with confidence. If current documentation or browsing tools are available and the feature matters to execution, verify it before relying on it.
 
+## Capability verification gate
+
+When the user names a specific model or version and the requested execution depends on a model-specific feature, verify that feature against current official documentation when browsing or documentation access is available.
+
+Prefer official model documentation, release notes, model cards, or first-party product pages over remembered capability information, third-party summaries, or outdated examples.
+
+Treat remembered model specs as provisional when the capability may have changed.
+
+If live verification is unavailable:
+
+- do not present uncertain capabilities as fact;
+- do not invent version-specific controls or limits;
+- do not assume that a feature from an older or newer model version exists in the named version;
+- use the model-neutral fallback when possible;
+- phrase uncertain recommendations as optional rather than guaranteed.
+
+Verification should focus on capabilities that materially change execution. Do not browse merely to confirm details that do not affect the prompt or workflow.
+
 ## Capability questions
 
 Check whether the selected workflow supports:
