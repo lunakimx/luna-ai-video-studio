@@ -90,6 +90,29 @@ For every approved connected shot, retain:
 
 For directly connected clips, copy the previous final visible state into the next opening state.
 
+When the selected model supports first-frame conditioning or an equivalent start-frame image input, prefer using the accepted previous clip's actual final frame as the next clip's first-frame reference image.
+
+Treat that actual final frame as authoritative for continuity-critical visible state, including:
+
+- facial identity and hairstyle
+- wardrobe and accessories
+- hand and prop state
+- subject position and orientation
+- pose or movement phase
+- camera side, framing, and relative position
+- screen direction and travel direction
+- damage, dirt, blood, and wetness
+- lighting direction and exposure state
+- important object placement
+- creature or product state
+- environmental state and motion
+
+Do not rely on text-only continuity instructions when a usable accepted final frame is available and the selected model can consume it as a first-frame reference.
+
+If the final frame contains a generation artifact, unwanted blur, deformation, transient muzzle flash, motion smear, occlusion, or other state that should not be preserved, do not blindly carry it forward. Use the nearest clean accepted frame or a corrected continuity reference instead.
+
+If first-frame conditioning is unsupported, unavailable, or would conflict with the intended next-shot composition, preserve the same handoff state through the strongest supported reference method and explicit continuity instructions.
+
 Preserve, when relevant:
 
 - subject position and orientation
@@ -113,7 +136,8 @@ After an approved prompt, accepted revision, or accepted generated clip:
 1. update only values that actually changed;
 2. preserve every unchanged lock;
 3. prefer the accepted generated result over an earlier planned state when the user approves that result;
-4. carry the final state forward when continuity matters.
+4. carry the final state forward when continuity matters;
+5. when first-frame conditioning is supported, record which accepted final frame should be used as the next clip's start reference.
 
 ## Conflict rule
 
@@ -141,3 +165,4 @@ Use:
 - changed this turn:
 - final state:
 - next-shot handoff:
+- first-frame reference when applicable:
