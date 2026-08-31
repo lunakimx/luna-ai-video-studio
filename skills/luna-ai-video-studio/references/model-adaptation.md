@@ -47,6 +47,18 @@ Check whether the selected workflow supports:
 
 Never invent support for a feature.
 
+## Connected-shot frame handoff
+
+When creating a directly connected next clip and the selected model supports first-frame conditioning or an equivalent start-frame image input, prefer using the accepted previous clip's actual final frame as the next clip's first-frame reference.
+
+This should take priority over text-only continuity instructions when the frame is clean and usable.
+
+Use the carried frame to preserve continuity-critical visible state such as identity, hair, wardrobe, accessories, props, hand state, pose, camera side, framing, screen direction, damage, wetness, lighting, important object placement, creature state, and environment state.
+
+Do not blindly carry a bad transient frame. If the actual final frame contains blur, deformation, occlusion, motion smear, muzzle flash, exposure spikes, or another unwanted artifact, use the nearest clean accepted frame or a corrected continuity reference instead.
+
+If first-frame conditioning is unavailable, use the strongest supported reference method and explicit handoff wording. Never claim frame conditioning is active when the selected model or workflow does not support it.
+
 ## Prompt adaptation
 
 Adjust these variables to the model:
