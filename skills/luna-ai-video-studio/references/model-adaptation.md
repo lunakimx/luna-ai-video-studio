@@ -44,6 +44,7 @@ Check whether the selected workflow supports:
 - duration options
 - aspect-ratio options
 - resolution options
+- frame-rate or timebase options when stitching or motion continuity depends on them
 
 Never invent support for a feature.
 
@@ -72,7 +73,7 @@ For directly connected clips:
 
 For workflows described as 1080p, first check the model's official or verified native input/output dimensions.
 
-When the selected model or encoding pipeline is verified to benefit from 16-pixel-aligned dimensions and accepts them without changing the intended framing, 1920×1088 may be preferred over 1920×1080 for generation or connected-shot handoff stability.
+Never request 1920×1088 merely because the user asks for 1080p. Use 1920×1088 only when the selected model or pipeline explicitly supports or produces that aligned coded size, the intended framing remains correct, and there is a demonstrated workflow reason to preserve it.
 
 Do not force 1920×1088 when:
 
@@ -80,11 +81,22 @@ Do not force 1920×1088 when:
 - the platform, API, editor, or delivery target requires 1920×1080;
 - 1088-height media would be automatically cropped, stretched, letterboxed, or otherwise mishandled;
 - first-frame or last-frame conditioning is internally resized in a way that removes the practical benefit;
-- changing dimensions would break a previously accepted connected-shot workflow.
+- changing dimensions would break a previously accepted connected-shot workflow;
+- current documentation or observed workflow behavior does not establish a reason to use 1920×1088.
 
 For 720p workflows, 1280×720 already satisfies 16-pixel alignment and should normally remain unchanged unless the selected model documents another native size.
 
 When capability or behavior is uncertain, prefer the model's documented native resolution and keep the connected-shot workflow consistent rather than forcing 1920×1088.
+
+## Frame rate and timebase
+
+When several generated clips will be stitched into one continuous sequence, preserve the same delivered frame rate or timebase across adjacent clips whenever the workflow exposes or controls it.
+
+Do not invent a frame-rate control when the model does not expose one.
+
+If generated clips arrive with different frame rates, treat normalization as an editing or delivery concern and avoid claiming seamless frame-level handoff until the clips have been conformed and inspected.
+
+A matching resolution does not guarantee a smooth transition when frame cadence differs.
 
 ## Resolution decision order
 
@@ -93,8 +105,9 @@ When continuity and delivery stability matter, decide in this order:
 1. verify the selected model's supported and native resolution behavior;
 2. preserve the accepted connected-shot resolution and framing when possible;
 3. verify first-frame or last-frame conditioning behavior when it is being used;
-4. consider 16-pixel alignment only when it provides a verified practical benefit;
-5. preserve final platform, editor, or delivery requirements.
+4. preserve compatible frame rate or timebase when the workflow exposes it;
+5. consider 16-pixel alignment only when it provides a verified practical benefit;
+6. preserve final platform, editor, or delivery requirements.
 
 Use the most stable supported option. Do not convert a model-specific optimization into a global rule.
 
