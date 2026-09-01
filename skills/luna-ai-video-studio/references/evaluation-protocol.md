@@ -108,7 +108,7 @@ Generation-ready requires:
 
 ## Mode B scorecard — Generated output
 
-Score from 0 to 5:
+Score from 0 to 5, where higher is always better:
 
 - identity / reference fidelity
 - character and prop count
@@ -124,7 +124,7 @@ Score from 0 to 5:
 - sound-image match when relevant
 - reveal timing
 - ending strength
-- visible AI artifacts
+- artifact cleanliness / absence of visible AI artifacts
 - overall generation reliability
 
 ### Generated-output critical fails
@@ -183,11 +183,20 @@ For every transition from clip N to clip N+1, compare:
 - prop and hand state
 - screen direction
 - movement direction
+- subject velocity and movement phase when motion continues
+- camera side, movement direction, and velocity when camera motion continues
 - damage / dirt / wetness
 - lighting direction
 - object placement
 - creature or product state
+- environmental motion direction and intensity
+- audio ambience, room tone, and continuing sound state when native or generated audio is used
+- accepted resolution, aspect ratio, framing, and crop when frame handoff is used
 - story state
+
+When first-frame conditioning is part of the workflow, verify that the accepted prior final frame or nearest clean accepted frame was carried forward without an unexplained continuity reset.
+
+When clips are stitched, inspect the boundary for duplicated visual frames, repeated motion beats, micro-stutter, abrupt audio discontinuity, or an unintended pause.
 
 Record every unexplained reset.
 
