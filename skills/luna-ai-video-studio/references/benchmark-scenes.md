@@ -153,15 +153,30 @@ Common failures:
 
 ## Benchmark 10 — Connected two-clip continuity
 
-Clip A ends with one character wearing a wet dark jacket, holding a flashlight in the right hand, facing a doorway, with a warm light source coming from frame left.
+Clip A ends with one character wearing a wet dark jacket, holding a flashlight in the right hand, moving toward a doorway while the camera tracks backward, with a warm light source coming from frame left and steady rain ambience audible in the same acoustic space.
 
-Clip B must begin from the same visible state and continue the action without resetting identity, wardrobe, hand state, screen direction, lighting, or object placement.
+Clip B must begin from the same visible and moving state and continue the action without resetting identity, wardrobe, hand state, screen direction, lighting, object placement, subject momentum, camera momentum, environmental motion, or audible ambience.
+
+When the selected test model supports first-frame conditioning or an equivalent start-frame image input, use the accepted actual final frame of Clip A as Clip B's first-frame reference. If the exact final frame is visibly corrupted or contains an unwanted transient artifact, use the nearest clean accepted frame and record that choice.
+
+Preserve the accepted connected-shot resolution, aspect ratio, framing, and crop. Do not change to 1920×1088 merely because the workflow is described as 1080p; use the selected model's verified supported dimensions and preserve them consistently across the pair.
+
+If frame rate or timebase is exposed by the workflow, keep it consistent across the two clips. If native or generated audio is present, preserve rain ambience, room or corridor tone, sound perspective, and any continuing decay or movement sounds across the boundary.
+
+After generation, inspect the stitch boundary for a duplicated visual frame, repeated motion beat, micro-stutter, abrupt camera-speed reset, subject-speed reset, environmental-motion reset, duplicated transient sound, or abrupt ambience change.
 
 Test targets:
 - shot ledger usage
-- final-to-first-frame handoff
+- accepted final-frame to first-frame handoff
+- first-frame conditioning when supported
 - hand and prop continuity
 - lighting continuity
+- resolution / framing / crop continuity
+- subject movement direction, speed, and phase continuity
+- camera movement direction and apparent speed continuity
+- environmental motion continuity
+- native or generated audio continuity when present
+- boundary-frame and boundary-audio inspection
 - story-state continuity
 
 Common failures:
@@ -169,6 +184,14 @@ Common failures:
 - jacket becomes dry
 - character orientation flips
 - lighting direction changes
+- next clip starts from a neutral pose instead of the ending movement phase
+- camera suddenly stops, reverses, or changes speed without cause
+- rain or other environmental motion resets direction or intensity
+- handoff frame is unnecessarily resized or recropped
+- 1920×1088 is forced without model-specific support or workflow justification
+- duplicated boundary frame creates a pause or micro-stutter
+- ambience restarts at a different loudness or acoustic character
+- a transient sound is duplicated across the boundary
 
 ## Benchmark 11 — Stylized animation timing
 
