@@ -22,6 +22,7 @@ Record only values that matter to future execution:
 - audio approach
 - overall visual language
 - continuity sensitivity
+- accepted generation resolution when continuity-sensitive
 
 Do not invent fixed values that the user has not approved and that cannot be safely inferred.
 
@@ -84,6 +85,7 @@ For every approved connected shot, retain:
 - important audio event
 - end state
 - continuity handoff
+- accepted delivered resolution when relevant
 - known generation risk
 
 ## Handoff rule
@@ -129,6 +131,39 @@ Preserve, when relevant:
 
 Do not reset the world because a new generation begins.
 
+## Resolution handoff
+
+For directly connected clips, preserve the accepted prior shot's delivered pixel dimensions for the next connected generation whenever the selected model supports that resolution.
+
+When first-frame conditioning is used, keep the chosen handoff frame at the same:
+
+- pixel dimensions;
+- aspect ratio;
+- framing;
+- visible crop.
+
+Do not resize, stretch, pad, or recrop the approved handoff frame merely to satisfy a generic resolution preference. Change it only when the selected model, platform, editor, or delivery target requires another supported format.
+
+For workflows described as 1080p, record the actual accepted dimensions rather than assuming all models use the same size.
+
+If the verified model or pipeline benefits from 16-pixel-aligned dimensions and accepts 1920×1088 without unwanted crop, stretch, or delivery problems, the connected workflow may use 1920×1088 consistently.
+
+If the selected model or delivery path expects native 1920×1080, preserve 1920×1080 instead.
+
+For 720p connected clips, preserve 1280×720 unless the selected model documents another native size.
+
+If the model internally resizes first-frame or last-frame references, record that behavior when it affects continuity and do not claim pixel-identical handoff.
+
+## Boundary-frame stitching
+
+Before concatenating directly connected clips, inspect the transition boundary.
+
+If the previous clip's final frame and the next clip's opening frame repeat the same visible moment, trim only the redundant overlap needed to avoid a visible pause, repeated beat, or micro-stutter.
+
+A one-frame trim may be appropriate when exactly one duplicate boundary frame is present, but do not make one-frame trimming automatic. Inspect the actual boundary first.
+
+Do not trim away a meaningful action phase, reaction, audio sync point, or continuity cue merely to make the cut shorter.
+
 ## Update rule
 
 After an approved prompt, accepted revision, or accepted generated clip:
@@ -137,7 +172,8 @@ After an approved prompt, accepted revision, or accepted generated clip:
 2. preserve every unchanged lock;
 3. prefer the accepted generated result over an earlier planned state when the user approves that result;
 4. carry the final state forward when continuity matters;
-5. when first-frame conditioning is supported, record which accepted final frame should be used as the next clip's start reference.
+5. when first-frame conditioning is supported, record which accepted final frame should be used as the next clip's start reference;
+6. when resolution affects continuity, record the actual accepted delivered dimensions and preserve them across connected clips unless the workflow changes.
 
 ## Conflict rule
 
@@ -166,3 +202,5 @@ Use:
 - final state:
 - next-shot handoff:
 - first-frame reference when applicable:
+- resolution handoff when applicable:
+- boundary trim note when applicable:
