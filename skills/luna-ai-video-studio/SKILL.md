@@ -167,6 +167,10 @@ For connected clips preserve identity, hair, wardrobe, footwear, accessories, pr
 
 Carry the previous shot's final state into the next shot when continuity matters.
 
+When motion continues across a direct clip boundary, preserve subject direction and apparent speed, action phase, camera movement direction and apparent speed, and dominant environmental motion rather than restarting from a neutral state.
+
+When generated or native audio continues across a direct clip boundary, preserve ambience, room tone, continuing sound sources, sound perspective, and relevant decay tails unless the scene intentionally changes acoustic space.
+
 Do not reset the world between directly connected clips.
 
 For multi-shot, continuity-sensitive, revision-heavy, or reference-sensitive work, read `references/production-ledger.md` and keep a compact internal production ledger.
@@ -181,13 +185,17 @@ When a clean accepted final frame is used as the next clip's first-frame referen
 
 Do not assume every workflow labeled 1080p uses the same pixel dimensions.
 
-When a selected model or pipeline is verified to benefit from 16-pixel-aligned dimensions and accepts them cleanly, a 1080p workflow may use 1920×1088. If the model, platform, editor, API, or delivery target expects native 1920×1080, preserve 1920×1080 instead.
+Never request 1920×1088 merely because the user asks for 1080p. Use it only when the selected model or pipeline is verified to support or produce that aligned coded size and there is a demonstrated workflow reason to preserve it. If the model, platform, editor, API, or delivery target expects native 1920×1080, preserve 1920×1080 instead.
 
 For 720p workflows, normally preserve 1280×720 unless the selected model documents another native size.
+
+When the workflow exposes frame rate or timebase and clips will be stitched, preserve the same delivered cadence across connected clips when possible. Do not invent a frame-rate control when the model does not expose one.
 
 Model-native supported resolution takes priority over a generic alignment optimization. For model-specific resolution behavior and exceptions, read `references/model-adaptation.md`.
 
 Before stitching directly connected clips, inspect the boundary. If the previous final frame and next opening frame duplicate the same visible moment, trim only the redundant overlap needed to remove a repeated hold or micro-stutter. Do not apply an automatic one-frame trim without inspecting the actual boundary.
+
+When audio is present, also inspect the boundary for duplicated transients, abrupt ambience changes, clipped decay tails, or a sudden change in acoustic perspective.
 
 ## Animation
 
@@ -199,7 +207,7 @@ Do not force photorealistic live-action behavior into stylized animation.
 
 ## Model adaptation
 
-Before finalizing, account for whether the selected model reasonably supports image-to-video, multiple references, first/last frame control, native audio, generated dialogue, lip sync, camera controls, multi-shot generation, extension, video-to-video, aspect-ratio control, resolution control, or negative prompting.
+Before finalizing, account for whether the selected model reasonably supports image-to-video, multiple references, first/last frame control, native audio, generated dialogue, lip sync, camera controls, multi-shot generation, extension, video-to-video, aspect-ratio control, resolution control, frame-rate or timebase control when relevant, or negative prompting.
 
 When the user names a specific model or version and execution depends on a model-specific feature, verify that feature against current official documentation when browsing or documentation access is available. Prefer first-party documentation and release notes over remembered specifications.
 
@@ -266,6 +274,9 @@ Before output, check:
 - continuity
 - connected-shot resolution consistency
 - handoff-frame integrity
+- motion handoff continuity when movement continues
+- audio handoff continuity when generated or native audio continues
+- frame-rate or timebase consistency when exposed and relevant
 - style consistency
 - genre fit
 - model compatibility
@@ -338,6 +349,12 @@ For validation work, add only when useful:
 When the user uploads a completed video and asks for feedback, switch to review mode.
 
 Inspect reference fidelity, character consistency, composition, camera, movement, environmental motion, physics, acting, dialogue, lip sync, sound, continuity, timing, reveal timing, ending quality, and visible AI artifacts.
+
+Only claim direct video observations that the current environment can actually inspect.
+
+If the current environment cannot directly inspect the supplied video, do not pretend to have reviewed moments, timestamps, motion, lip sync, or audio that were not accessible. Use available media inspection tools to examine representative frames, metadata, and audio when possible. If that still cannot establish the requested diagnosis, ask the user for the minimum useful evidence such as extracted frames, a contact sheet, a short accessible clip, or the relevant time range in a supported form.
+
+When inspection is partial, state the limitation and distinguish observed evidence from prompt-based inference.
 
 Identify the failed behavior precisely. When possible, name the affected moment or time range. Rewrite only what needs correction and preserve everything that already works.
 
