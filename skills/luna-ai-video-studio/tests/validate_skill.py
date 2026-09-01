@@ -60,6 +60,7 @@ required_skill_sections = [
     "## Sound",
     "## Motion and physical evidence",
     "## Continuity",
+    "## Resolution and connected-shot handoff",
     "## Model adaptation",
     "## Retry and repair",
     "## Silent QA",
@@ -71,14 +72,33 @@ required_skill_sections = [
 for heading in required_skill_sections:
     require(heading in skill, f"Missing SKILL.md section: {heading}")
 
+for phrase in [
+    "preserve subject direction and apparent speed",
+    "preserve ambience, room tone",
+    "Never request 1920×1088 merely because the user asks for 1080p",
+    "do not pretend to have reviewed moments",
+    "When inspection is partial",
+]:
+    require(phrase in skill, f"SKILL.md missing continuity/review safeguard: {phrase}")
+
 ledger = read(REFS / "production-ledger.md")
 for phrase in [
     "## Handoff rule",
+    "## Resolution handoff",
+    "## Motion handoff",
+    "## Audio continuity handoff",
+    "## Frame rate and timebase handoff",
+    "## Boundary-frame stitching",
     "## Update rule",
     "## Conflict rule",
     "final visible state",
+    "first-frame reference image",
     "screen direction",
     "hand and prop state",
+    "camera movement direction",
+    "ambience and room tone",
+    "Do not duplicate a transient sound",
+    "do not make one-frame trimming automatic",
 ]:
     require(phrase in ledger, f"Production ledger missing required rule: {phrase}")
 
@@ -107,6 +127,11 @@ for phrase in [
     "Production-validated",
     "First-pass success rate",
     "Critical-failure rate",
+    "where higher is always better",
+    "artifact cleanliness / absence of visible AI artifacts",
+    "subject velocity and movement phase",
+    "audio ambience, room tone",
+    "duplicated visual frames",
 ]:
     require(phrase in evaluation, f"Evaluation protocol missing required rule: {phrase}")
 
@@ -133,11 +158,27 @@ benchmark_coverage = [
 for title in benchmark_coverage:
     require(title in benchmarks, f"Benchmark coverage missing: {title}")
 
+for phrase in [
+    "accepted actual final frame of Clip A",
+    "first-frame conditioning when supported",
+    "resolution / framing / crop continuity",
+    "camera movement direction and apparent speed continuity",
+    "native or generated audio continuity when present",
+    "duplicated boundary frame creates a pause or micro-stutter",
+    "1920×1088 is forced without model-specific support",
+]:
+    require(phrase in benchmarks, f"Connected continuity benchmark missing: {phrase}")
+
 model_adaptation = read(REFS / "model-adaptation.md")
 for phrase in [
     "## Capability verification gate",
     "Prefer official model documentation",
     "Never invent support for a feature",
+    "## Connected-shot frame handoff",
+    "## Resolution alignment and exceptions",
+    "Never request 1920×1088 merely because the user asks for 1080p",
+    "## Frame rate and timebase",
+    "## Resolution decision order",
     "## Model-neutral fallback",
 ]:
     require(phrase in model_adaptation, f"Model adaptation missing safety rule: {phrase}")
