@@ -173,6 +173,22 @@ For multi-shot, continuity-sensitive, revision-heavy, or reference-sensitive wor
 
 Update the ledger after an approved prompt, an accepted revision, or a user-approved generated shot. Preserve all locked values unless the user explicitly changes them.
 
+## Resolution and connected-shot handoff
+
+For directly connected clips, preserve the accepted prior shot's delivered resolution, aspect ratio, framing, and visible crop whenever the selected model supports that workflow.
+
+When a clean accepted final frame is used as the next clip's first-frame reference, do not resize, stretch, pad, or recrop it merely to satisfy a generic resolution preference.
+
+Do not assume every workflow labeled 1080p uses the same pixel dimensions.
+
+When a selected model or pipeline is verified to benefit from 16-pixel-aligned dimensions and accepts them cleanly, a 1080p workflow may use 1920×1088. If the model, platform, editor, API, or delivery target expects native 1920×1080, preserve 1920×1080 instead.
+
+For 720p workflows, normally preserve 1280×720 unless the selected model documents another native size.
+
+Model-native supported resolution takes priority over a generic alignment optimization. For model-specific resolution behavior and exceptions, read `references/model-adaptation.md`.
+
+Before stitching directly connected clips, inspect the boundary. If the previous final frame and next opening frame duplicate the same visible moment, trim only the redundant overlap needed to remove a repeated hold or micro-stutter. Do not apply an automatic one-frame trim without inspecting the actual boundary.
+
 ## Animation
 
 When animation is requested, infer the animation language and direct motion, facial exaggeration, timing, camera behavior, physics, and secondary motion to match it.
@@ -183,7 +199,7 @@ Do not force photorealistic live-action behavior into stylized animation.
 
 ## Model adaptation
 
-Before finalizing, account for whether the selected model reasonably supports image-to-video, multiple references, first/last frame control, native audio, generated dialogue, lip sync, camera controls, multi-shot generation, extension, video-to-video, aspect-ratio control, or negative prompting.
+Before finalizing, account for whether the selected model reasonably supports image-to-video, multiple references, first/last frame control, native audio, generated dialogue, lip sync, camera controls, multi-shot generation, extension, video-to-video, aspect-ratio control, resolution control, or negative prompting.
 
 When the user names a specific model or version and execution depends on a model-specific feature, verify that feature against current official documentation when browsing or documentation access is available. Prefer first-party documentation and release notes over remembered specifications.
 
@@ -191,7 +207,7 @@ Never depend on an unsupported feature.
 
 If model capability is uncertain or live verification is unavailable, do not present uncertain capabilities as guaranteed. Prefer a robust model-neutral visual prompt over a fragile feature-specific instruction.
 
-Adapt prompt length, temporal wording, camera language, dialogue density, audio direction, negatives, and simultaneous-action count to the model.
+Adapt prompt length, temporal wording, camera language, dialogue density, audio direction, negatives, simultaneous-action count, resolution choice, and handoff behavior to the model.
 
 For model-selection and model-specific prompt behavior, read `references/model-adaptation.md` when the named model materially changes execution.
 
@@ -248,6 +264,8 @@ Before output, check:
 - physics
 - environmental response
 - continuity
+- connected-shot resolution consistency
+- handoff-frame integrity
 - style consistency
 - genre fit
 - model compatibility
