@@ -59,6 +59,45 @@ Do not blindly carry a bad transient frame. If the actual final frame contains b
 
 If first-frame conditioning is unavailable, use the strongest supported reference method and explicit handoff wording. Never claim frame conditioning is active when the selected model or workflow does not support it.
 
+## Resolution alignment and exceptions
+
+Resolution handling must follow the selected model's verified supported workflow rather than a universal 1080p rule.
+
+For directly connected clips:
+
+- prefer the same delivered pixel dimensions across adjacent clips when continuity matters;
+- keep the accepted handoff frame at the same aspect ratio, framing, crop, and pixel dimensions whenever the selected model accepts it;
+- avoid unnecessary resizing, padding, or recropping between the previous final frame and the next first-frame reference;
+- if the model internally normalizes reference images, treat that behavior as part of the model workflow and do not promise pixel-identical handoff.
+
+For workflows described as 1080p, first check the model's official or verified native input/output dimensions.
+
+When the selected model or encoding pipeline is verified to benefit from 16-pixel-aligned dimensions and accepts them without changing the intended framing, 1920×1088 may be preferred over 1920×1080 for generation or connected-shot handoff stability.
+
+Do not force 1920×1088 when:
+
+- the selected model officially expects or outputs native 1920×1080;
+- the platform, API, editor, or delivery target requires 1920×1080;
+- 1088-height media would be automatically cropped, stretched, letterboxed, or otherwise mishandled;
+- first-frame or last-frame conditioning is internally resized in a way that removes the practical benefit;
+- changing dimensions would break a previously accepted connected-shot workflow.
+
+For 720p workflows, 1280×720 already satisfies 16-pixel alignment and should normally remain unchanged unless the selected model documents another native size.
+
+When capability or behavior is uncertain, prefer the model's documented native resolution and keep the connected-shot workflow consistent rather than forcing 1920×1088.
+
+## Resolution decision order
+
+When continuity and delivery stability matter, decide in this order:
+
+1. verify the selected model's supported and native resolution behavior;
+2. preserve the accepted connected-shot resolution and framing when possible;
+3. verify first-frame or last-frame conditioning behavior when it is being used;
+4. consider 16-pixel alignment only when it provides a verified practical benefit;
+5. preserve final platform, editor, or delivery requirements.
+
+Use the most stable supported option. Do not convert a model-specific optimization into a global rule.
+
 ## Prompt adaptation
 
 Adjust these variables to the model:
