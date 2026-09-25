@@ -1,0 +1,92 @@
+[
+  {
+    "id": "remove_action",
+    "request": "Earlier 12s prompt: 0–4s woman approaches a closed door; 4–7s picks up a brass key with a metallic clink and key close-up; 7–10s unlocks the door; 10–12s enters. Camera pushes toward the key. Revise: the door is already open, remove picking up the key, keep the camera fixed, retain 12s and her red coat. Final English prompt only.",
+    "criteria": [
+      "No key pickup, unlocking, metallic pickup cue, or key focus remains.",
+      "Camera stays physically fixed; no old push-in remains.",
+      "Red coat and total 12s survive; active actions fit continuous timing.",
+      "Exactly one final English prompt; no revision-history patch."
+    ]
+  },
+  {
+    "id": "one_take",
+    "request": "Write an English 30s 9:16 single continuous shot: two cats run through an open bakery doorway and stop beside a flour bag. No cuts, speech, or music. Camera follows them.",
+    "criteria": [
+      "No hard cuts, reverse shots, instantaneous viewpoint changes, or wall-crossing camera.",
+      "Camera route and subject travel remain physically continuous.",
+      "Exactly two cats; requested audio restrictions preserved.",
+      "Duration and ratio preserved."
+    ]
+  },
+  {
+    "id": "portrait_resolution",
+    "request": "My accepted 9:16 clip is 720×1280. The selected provider accepts 720×1280 first-frame input and returns the same dimensions. Plan the connected next clip and say what dimensions to use.",
+    "criteria": [
+      "Preserve 720×1280, 9:16 and accepted crop.",
+      "Do not prescribe 1280×720 or force a 1080p upgrade.",
+      "Carry accepted visible and motion state without claiming unsupported exact reproduction."
+    ]
+  },
+  {
+    "id": "diagnosis_only",
+    "request": "Only diagnose this prompt, do not rewrite it: camera stays locked in place for all 8 seconds and simultaneously makes a full orbit around a stationary person.",
+    "criteria": [
+      "Identify mutually incompatible fixed camera and orbit.",
+      "No replacement prompt or execution."
+    ]
+  },
+  {
+    "id": "language_budget",
+    "request": "Write only an English prompt, under 700 characters, for a 15s continuous bakery shot of a cat sniffing bread and stepping back when the bag rustles. No dialogue or music.",
+    "criteria": [
+      "English remains English; no automatic Chinese fallback.",
+      "Prompt is under 700 Unicode characters.",
+      "One continuous shot with causal reaction and preserved audio limits."
+    ]
+  },
+  {
+    "id": "reference_scope",
+    "request": "Use {{Mixed 1}} only for identity, not clothing or background. Put that person in a blue raincoat at a bus stop. 8s English prompt only.",
+    "criteria": [
+      "Exact {{Mixed 1}} token preserved.",
+      "Identity is locked without inheriting reference clothing or background.",
+      "Requested blue raincoat and bus stop govern the new scene."
+    ]
+  },
+  {
+    "id": "unsupported_feature",
+    "request": "The current provider documentation supplied here explicitly says it has no native audio and allows only 5s or 10s generation. I want a single 30s clip with generated speech. Explain my options.",
+    "criteria": [
+      "State the documented limitation without pretending 30s/native speech will execute.",
+      "Preserve intended 30s result via explicit assembly/audio alternatives.",
+      "No job submission or invented controls."
+    ]
+  },
+  {
+    "id": "ledger_recovery",
+    "request": "Continue a saved project. Ledger revision 4 says accepted coat=red and proposed coat=blue. No approval of blue is recorded. User says only change the weather to rain. Explain which coat you keep and how to update the ledger.",
+    "criteria": [
+      "Keep accepted red coat; proposed blue is not promoted.",
+      "Weather-related changes include relevant environmental state without redesigning unrelated details.",
+      "Read latest ledger and preserve revision/approval evidence; do not claim a save without successful storage."
+    ]
+  },
+  {
+    "id": "review_evidence",
+    "request": "I have not uploaded a video. Can you confirm the lip sync is perfect and call the project production-validated based on this prompt alone?",
+    "criteria": [
+      "Do not claim observed lip sync or generated-output validation.",
+      "Explain the evidence needed, with correct validation labels."
+    ]
+  },
+  {
+    "id": "retime_audio",
+    "request": "Earlier plan: 0–5s approach, 5–8s impact, 8–15s recovery, with impact sound at 6s. New timing: 0–8s approach, 8–10s impact, 10–15s recovery. Preserve the story; return the full corrected prompt.",
+    "criteria": [
+      "All channels use new ranges; impact cue occurs with visible contact in 8–10s.",
+      "No retired 6s impact cue survives.",
+      "Total 15s is preserved; unrelated story details retained."
+    ]
+  }
+]

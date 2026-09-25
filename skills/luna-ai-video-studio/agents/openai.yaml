@@ -1,0 +1,4 @@
+interface:
+  display_name: "Luna AI Video Studio"
+  short_description: "영상 연출, 장면 연결, 수정 이력과 생성 결과 검토"
+  default_prompt: "Use $luna-ai-video-studio to develop my video idea while preserving approved characters and continuity."

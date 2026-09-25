@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import json
 import sys
 from pathlib import Path
 
@@ -45,6 +46,7 @@ required_references = [
     "retry-repair.md",
     "evaluation-protocol.md",
     "benchmark-scenes.md",
+    "revision-workflow.md",
 ]
 
 for filename in required_references:
@@ -75,7 +77,7 @@ for heading in required_skill_sections:
 for phrase in [
     "preserve subject direction and apparent speed",
     "preserve ambience, room tone",
-    "Never request 1920×1088 merely because the user asks for 1080p",
+    "Never use a horizontal size for a vertical request",
     "do not pretend to have reviewed moments",
     "When inspection is partial",
 ]:
@@ -195,6 +197,25 @@ for phrase in [
 ]:
     require(phrase in directing, f"Directing standard missing required coverage: {phrase}")
 
+# These checks validate the evaluation fixtures, not actual model responses.
+cases_path = ROOT / "tests" / "behavior-cases.json"
+try:
+    cases = json.loads(read(cases_path))
+    ids = [case["id"] for case in cases]
+    require(len(ids) == len(set(ids)), "Behavior case IDs must be unique")
+    require(set(ids) >= {"remove_action", "one_take", "portrait_resolution", "diagnosis_only", "language_budget", "reference_scope", "unsupported_feature", "ledger_recovery", "review_evidence", "retime_audio"}, "Behavior case coverage incomplete")
+    for case in cases:
+        require(isinstance(case.get("request"), str) and bool(case["request"].strip()), "Each case needs a real request")
+        require(isinstance(case.get("criteria"), list) and len(case["criteria"]) >= 2, "Each case needs semantic grading criteria")
+except (ValueError, KeyError, TypeError) as exc:
+    require(False, f"Invalid behavior cases: {exc}")
+revision = read(REFS / "revision-workflow.md")
+for phrase in ["## Dependency cleanup", "## Final pass", "RETIME", "proposed until approved"]:
+    require(phrase in revision, f"Revision workflow missing: {phrase}")
+for phrase in ["## Durable storage and recovery", "ledger.json", "proposed", "accepted", "saving fails"]:
+    require(phrase in ledger, f"Durable ledger missing: {phrase}")
+require("720×1280" in model_adaptation and "1080×1920" in model_adaptation, "Model adaptation must include portrait examples")
+
 if errors:
     print(f"Luna AI Video Studio validation FAILED: {len(errors)} error(s), {checks} checks run")
     for error in errors:
@@ -204,3 +225,4 @@ if errors:
 print(f"Luna AI Video Studio validation PASSED: {checks} checks run")
 print("Static validation label: Prompt-system integrity validated")
 print("Note: generated-video quality still requires output benchmark runs per evaluation-protocol.md")
+

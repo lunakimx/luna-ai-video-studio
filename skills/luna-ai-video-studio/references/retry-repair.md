@@ -207,6 +207,10 @@ If the failure remains:
 
 Do not repeat an identical prompt and expect a deterministic repair.
 
+## Dependency-safe repair
+
+Before a retry, apply `revision-workflow.md`. Minimal change refers to the scope of the correction, not literal word replacement: remove obsolete downstream sound, focus, prop, camera, timing, and ending instructions. Return a complete corrected prompt by default, with no retired instructions. Honor diagnosis-only or patch-only requests without silently rewriting.
+
 ## Revision patch output
 
 When useful, provide:
@@ -226,3 +230,4 @@ When useful, provide:
 ### RETRY PROMPT
 
 Provide a corrected prompt that is independently executable.
+

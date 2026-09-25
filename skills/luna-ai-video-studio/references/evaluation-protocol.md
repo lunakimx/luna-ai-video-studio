@@ -272,3 +272,12 @@ Verdicts:
 - winner:
 - reason:
 - confidence / limitations:
+
+
+## Behavior evidence and score limits
+
+The numerical thresholds above are internal acceptance heuristics, not calibrated probabilities of generation success. Mark irrelevant categories N/A and exclude them from the average; report the scored category count. Do not score population-level reliability from one video. Report first-pass success and critical-failure rates only across a stated set of attempts.
+
+Static checks confirm that files and required rules exist. They do not prove that an agent follows those rules. Use `../tests/behavior-cases.json` to collect actual agent responses, and grade each response against its case criteria. Do not use the criteria as part of the agent's request. Record case ID, skill revision, agent/model, actual response, pass/fail evidence, and remaining limitations. An automated contradiction lint may supplement this review, but cannot replace semantic grading.
+
+A passing text-response exercise is prompt-level behavior evidence only. It cannot support Output-reviewed, A/B tested, or Production-validated labels without the required video evidence. CI checks file integrity and case coverage; independent behavioral runs and generated-video trials remain separate gates.

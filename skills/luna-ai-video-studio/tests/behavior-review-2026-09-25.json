@@ -1,0 +1,42 @@
+{
+  "date": "2026-09-25",
+  "scope": "Four independent text requests answered by an isolated agent and reviewed by the maintainer; no video generation. Markdown emphasis normalized in stored response B.",
+  "agent": "Session-default agent; exact model ID not exposed",
+  "skill_sha256": "6d2cee8aae56c6b5f716902f26552c5e0f84c8622e70330fa42f27cedbd62361",
+  "label": "Text behavior smoke-check only; not generated-output or production validation",
+  "results": [
+    {
+      "case_id": "remove_action",
+      "response": "12-second continuous shot. A woman in a red coat approaches an already open doorway. The camera remains fixed at eye level in a wide composition showing her approach, the threshold, and the space just inside. 0–4s: she walks toward the doorway at a natural pace, her coat moving with her steps. 4–7s: she slows at the threshold and looks inside. 7–12s: she crosses the threshold and continues into the room, remaining visible within the fixed frame. Natural footfalls match her steps. Maintain stable framing and focus throughout.",
+      "review": "pass",
+      "evidence": "Preserved 12s and red coat; removed key, unlock, pickup sound, key focus and push-in; returned one complete English prompt."
+    },
+    {
+      "case_id": "portrait_resolution",
+      "response": "Use 720×1280 for both the first-frame input and the next clip’s output, preserving the accepted 9:16 framing and crop.\nUse the accepted clip’s clean final frame as the next clip’s first-frame reference. Continue its ending action from the same pose and motion phase, preserving subject direction and speed, camera motion, wardrobe, lighting, props, and environmental movement. Carry over ambience and continuing sounds if present. Preserve the existing frame rate if the provider exposes it.\nInspect the eventual join for motion or audio discontinuities and duplicated overlap; trim only what inspection shows is redundant.",
+      "review": "pass",
+      "evidence": "Preserved portrait input/output dimensions and crop; carried motion/audio conditionally; no forced landscape or upgrade."
+    },
+    {
+      "case_id": "diagnosis_only",
+      "response": "The camera instructions contradict each other: a camera locked in place cannot simultaneously travel through a full orbit around a stationary person. Both apply to all eight seconds, so there is no temporal separation that resolves the conflict. The intended camera behavior is ambiguous and must be selected before generation.",
+      "review": "pass",
+      "evidence": "Identified fixed-position/orbit conflict without a replacement prompt."
+    },
+    {
+      "case_id": "language_budget",
+      "response": "15-second continuous bakery shot, fixed low camera framing a cat beside a loaf in an open paper bag. 0–5s: the cat leans forward, whiskers twitching as it sniffs the exposed bread. 5–9s: its nose brushes the bag's rim; the paper visibly crinkles with a crisp rustle. The cat's ears turn toward the sound, then it shifts its weight and takes two small steps backward. 9–15s: it holds at that distance, watching the bag as the paper settles. Warm window light, realistic paw contact and fur movement. Quiet bakery ambience, soft paw taps, synchronized paper rustle. No dialogue, music, cuts, or text.",
+      "review": "pass",
+      "evidence": "English-only response, 598 Unicode characters; 15s causal sniff/rustle/reaction and requested audio exclusions."
+    }
+  ],
+  "not_run": [
+    "one_take",
+    "reference_scope",
+    "unsupported_feature",
+    "ledger_recovery",
+    "review_evidence",
+    "retime_audio"
+  ],
+  "limitations": "Four cases, one response per case. No baseline comparison, no model success-rate estimate. Full behavior suite and generated-video benchmarks remain outstanding."
+}

@@ -8,6 +8,32 @@ Keep the ledger internal unless the user asks to see it.
 
 Track the approved state of the production so later prompts preserve identity, continuity, scene logic, and handoff state instead of resetting the production between clips.
 
+## Durable storage and recovery
+
+For continuity-sensitive or revision-heavy projects, maintain one explicit project state file: `production/<project-slug>/ledger.json`. This is a logical project-relative path, not a universal local filesystem path. In a repository-backed project, save it in that repository. In a file-library host, use the host's persistent file workflow and retain the returned file identifier. Respect an existing user-designated ledger and never create a second competing copy.
+
+Before writing, read the latest saved version and confirm the project identity. Record a monotonically increasing revision, update time, source artifact identifiers, and approval evidence. Re-read before saving if concurrent changes are possible; merge only the requested changes, never overwrite unseen updates.
+
+Minimum fields:
+
+```json
+{
+  "schema_version": 1,
+  "project_id": "user-project-slug",
+  "revision": 1,
+  "updated_at": "ISO-8601 timestamp",
+  "accepted": {"locks": {}, "shots": [], "handoff": {}},
+  "proposed": [],
+  "evidence": []
+}
+```
+
+Keep an unapproved prompt or inferred adjustment in `proposed`; promote only the parts the user approves into `accepted`. If an accepted render differs from its planned prompt, retain the accepted visible result with its source identifier. Record uncertainty explicitly instead of inventing missing state.
+
+Load this file before a continuation, cross-session recovery, or revision. Use the newest explicit user instruction over conflicting saved values, including dependent changes described in `revision-workflow.md`. Save current production facts and concise approval evidence only; do not save hidden deliberation or rejected brainstorms.
+
+If persistent storage is unavailable or saving fails, state that the ledger was not saved and provide a compact handoff summary. Never promise cross-session recall from in-memory state. Do not silently treat a temporary local file as durable storage.
+
 ## Global project state
 
 Record only values that matter to future execution:
@@ -150,13 +176,7 @@ When first-frame conditioning is used, keep the chosen handoff frame at the same
 
 Do not resize, stretch, pad, or recrop the approved handoff frame merely to satisfy a generic resolution preference. Change it only when the selected model, platform, editor, or delivery target requires another supported format.
 
-For workflows described as 1080p, record the actual accepted dimensions rather than assuming all models use the same size.
-
-Never convert 1080p to 1920×1088 merely because 16-pixel alignment exists. Use 1920×1088 only when the selected model or pipeline supports or produces it cleanly and there is a demonstrated workflow reason to preserve that aligned size.
-
-If the selected model or delivery path expects native 1920×1080, preserve 1920×1080 instead.
-
-For 720p connected clips, preserve 1280×720 unless the selected model documents another native size.
+Record actual dimensions and aspect ratio rather than relying on a 720p/1080p label. Never transpose portrait into landscape. Follow the single resolution policy in `model-adaptation.md`, including provider verification and alignment exceptions.
 
 If the model internally resizes first-frame or last-frame references, record that behavior when it affects continuity and do not claim pixel-identical handoff.
 
@@ -270,3 +290,4 @@ Use:
 - audio handoff when applicable:
 - frame-rate/timebase note when applicable:
 - boundary trim note when applicable:
+

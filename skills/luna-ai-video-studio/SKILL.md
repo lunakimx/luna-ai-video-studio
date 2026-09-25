@@ -33,13 +33,24 @@ If a useful assumption materially affects the result, keep it conservative and i
 
 When instructions conflict, use this order:
 
-1. Latest explicit user instruction.
-2. Uploaded reference material.
-3. Previously approved project decisions.
-4. Selected model limitations and requirements.
-5. Your own directing choice.
+1. Latest explicit user instruction, including the requested deliverable and reference scope.
+2. Explicit unchanged locks and approved project decisions still active after that instruction.
+3. Uploaded references only within their assigned roles; an identity source does not automatically govern background, pose, lighting, or camera.
+4. Conservative inferred filmmaking choices.
 
-When the user intentionally changes one approved element, change that element and preserve the rest.
+Treat verified model capabilities as a separate feasibility gate, not a lower-priority preference. When a request exceeds a supported control, preserve the intended result, explain the exact limitation briefly, and offer the closest supported route. Never claim an unsupported request can execute.
+
+When the user intentionally changes one approved element, change it and all dependent instructions affected by that change; preserve unrelated approved elements. Read `references/revision-workflow.md` for revisions. Preserve exact user/interface reference tags, including spelling and capitalization.
+
+## Scope and companion skills
+
+This skill plans, writes, diagnoses, and reviews. Applying it alone does not authorize generation, paid jobs, media uploads, publishing, or edits to source footage. Use a separate execution workflow only when the user explicitly requests that action.
+
+Honor diagnosis-only, script-only, prompt-only, and user-specified output formats. A review request does not authorize rewriting or modifying the source artifact.
+
+When available, use `seedance-2-5-prompting` selectively for Seedance camera paths, continuous takes, exact reference tags, character counting, and repeated revision cleanup. Use `seedance-2-5-video-director` selectively for dialogue, emotional performance, and physical contact-response. Resolve companions by their installed skill names, never hard-coded personal IDs. If absent, continue using this skill; do not install them automatically.
+
+Keep Luna's approved story and project state authoritative. Load only the relevant companion guidance. Return one coherent deliverable. User language and output format take precedence over companion defaults; compress in the requested language without automatic translation. Do not force a universal 5,000-character platform limit or eight-section format. Use a verified provider limit or explicit user limit when supplied.
 
 ## Production workflow
 
@@ -175,23 +186,13 @@ Do not reset the world between directly connected clips.
 
 For multi-shot, continuity-sensitive, revision-heavy, or reference-sensitive work, read `references/production-ledger.md` and keep a compact internal production ledger.
 
-Update the ledger after an approved prompt, an accepted revision, or a user-approved generated shot. Preserve all locked values unless the user explicitly changes them.
+Read the saved ledger before continuation or revision work. Persist concise production facts after an approved prompt, accepted revision, or user-approved generated shot using `references/production-ledger.md`. Separate proposed changes from accepted state; writing a draft does not approve it. Preserve all unrelated locks and never persist hidden reasoning.
 
 ## Resolution and connected-shot handoff
 
-For directly connected clips, preserve the accepted prior shot's delivered resolution, aspect ratio, framing, and visible crop whenever the selected model supports that workflow.
+Preserve accepted delivered dimensions, aspect ratio, framing, crop, and available frame cadence across connected clips when supported. Never use a horizontal size for a vertical request. For example, 16:9 720p may use 1280×720 and 9:16 720p may use 720×1280, only if supported by the selected provider. A quality label alone does not establish dimensions.
 
-When a clean accepted final frame is used as the next clip's first-frame reference, do not resize, stretch, pad, or recrop it merely to satisfy a generic resolution preference.
-
-Do not assume every workflow labeled 1080p uses the same pixel dimensions.
-
-Never request 1920×1088 merely because the user asks for 1080p. Use it only when the selected model or pipeline is verified to support or produce that aligned coded size and there is a demonstrated workflow reason to preserve it. If the model, platform, editor, API, or delivery target expects native 1920×1080, preserve 1920×1080 instead.
-
-For 720p workflows, normally preserve 1280×720 unless the selected model documents another native size.
-
-When the workflow exposes frame rate or timebase and clips will be stitched, preserve the same delivered cadence across connected clips when possible. Do not invent a frame-rate control when the model does not expose one.
-
-Model-native supported resolution takes priority over a generic alignment optimization. For model-specific resolution behavior and exceptions, read `references/model-adaptation.md`.
+Keep the clean accepted handoff image unchanged unless the selected workflow requires a supported conversion. All detailed resolution rules and exceptions live in `references/model-adaptation.md`; read that file when dimensions or frame conditioning affect execution.
 
 Before stitching directly connected clips, inspect the boundary. If the previous final frame and next opening frame duplicate the same visible moment, trim only the redundant overlap needed to remove a repeated hold or micro-stutter. Do not apply an automatic one-frame trim without inspecting the actual boundary.
 
@@ -362,9 +363,9 @@ If another attempt is needed, use the retry and repair rules rather than rewriti
 
 ## Revision rule
 
-When the user requests a revision, change what they asked to change and preserve what they did not ask to change.
+When the user requests a revision, apply `references/revision-workflow.md`: retire replaced values, remove dependent sound/prop/focus/camera instructions, and rebuild affected timing and end states. Preserve unrelated approved details.
 
-Treat a revision as the same production being corrected, not a new production being invented.
+Return one complete replacement prompt by default, rather than an old prompt plus patches. If the user requests diagnosis only or a patch only, provide exactly that. Treat a revision as the same production being corrected, not a new production being invented.
 
 ## Final standard
 
@@ -373,3 +374,4 @@ Produce the strongest prompt an expert AI video creator would confidently send t
 Optimize for clarity, control, continuity, believable motion, model compatibility, visual impact, and generation success rather than prompt length.
 
 Treat reliable retries, continuity survival, and measurable validation as part of production quality, not optional extras.
+

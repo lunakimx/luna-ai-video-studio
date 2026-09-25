@@ -84,7 +84,14 @@ Do not force 1920×1088 when:
 - changing dimensions would break a previously accepted connected-shot workflow;
 - current documentation or observed workflow behavior does not establish a reason to use 1920×1088.
 
-For 720p workflows, 1280×720 already satisfies 16-pixel alignment and should normally remain unchanged unless the selected model documents another native size.
+Resolve aspect ratio before pixel dimensions. Preserve the actual accepted dimensions when supported. Illustrative sizes, not universal provider controls:
+
+| Aspect | 720p example | 1080p example |
+| --- | --- | --- |
+| 16:9 landscape | 1280×720 | 1920×1080 |
+| 9:16 portrait | 720×1280 | 1080×1920 |
+
+For square, cinematic, or other ratios, use the selected provider's supported dimensions. Never force these examples onto a different ratio or claim that a resolution tier guarantees a particular size. Bitstream alignment is an implementation detail; do not change visible framing for it without verified need.
 
 When capability or behavior is uncertain, prefer the model's documented native resolution and keep the connected-shot workflow consistent rather than forcing 1920×1088.
 
@@ -150,3 +157,4 @@ When current capability is uncertain, write a robust visual prompt that does not
 8. add concise constraints.
 
 The goal is generation success, not displaying knowledge of every model feature.
+

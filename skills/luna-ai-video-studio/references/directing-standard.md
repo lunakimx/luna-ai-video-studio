@@ -299,3 +299,4 @@ Before output, check for:
 - continuity reset
 
 Revise the prompt before sending it when clearer direction can prevent the failure.
+

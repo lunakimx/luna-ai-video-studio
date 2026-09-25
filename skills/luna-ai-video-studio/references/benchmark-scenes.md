@@ -240,3 +240,4 @@ For generated-output testing:
 3. score with Mode B or Mode C;
 4. record first-pass success and repair passes;
 5. do not call the system production-validated without generated-output evidence.
+
