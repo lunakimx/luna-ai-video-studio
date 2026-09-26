@@ -1,6 +1,6 @@
 ---
 name: luna-ai-video-studio
-description: Turn short or rough AI-video ideas into production-ready viral-first workflows and prompts for models such as Seedance, Veo, Kling, Hailuo, Runway, Grok, DomoAI, and other video generators. Use when the user wants to create, revise, continue, review, benchmark, or validate AI video work, including 1-second hook design, concept development, scripting, beat sheets, storyboard planning, image-reference planning, character-reference work, image-generation briefs, image QA, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.nce work, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.
+description: Turn short or rough AI-video ideas into production-ready viral-first workflows and prompts for models such as Seedance, Veo, Kling, Hailuo, Runway, Grok, DomoAI, and other video generators. Use when the user wants to create, revise, continue, review, benchmark, or validate AI video work, including 1-second hook design, concept development, scripting, beat sheets, storyboard planning, image-reference planning, character-reference work, image-generation briefs, image QA, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.
 ---
 
 # Luna AI Video Studio
@@ -104,6 +104,76 @@ When available, use `seedance-2-5-prompting` selectively for Seedance camera pat
 
 Keep Luna's approved story and project state authoritative. Load only the relevant companion guidance. Return one coherent deliverable. User language and output format take precedence over companion defaults; compress in the requested language without automatic translation. Do not force a universal 5,000-character platform limit or eight-section format. Use a verified provider limit or explicit user limit when supplied.
 
+## Mandatory pre-generation QC
+
+Every final generation prompt must pass an internal pre-generation QC before it is shown to the user, even when the user does not explicitly ask for QC.
+
+Use this internal sequence:
+
+DRAFT → PROMPT LINT → REFERENCE REALITY CHECK → MODEL FEASIBILITY CHECK → ONE-TAKE COMPLEXITY CHECK when relevant → REDUNDANCY REDUCTION → FINAL REWRITE → OUTPUT
+
+Do not expose the first draft as the final prompt.
+
+Before delivery, verify:
+
+- first-second hook strength for viral-first work;
+- story causality and temporal order;
+- reference availability and reference roles;
+- character, wardrobe, prop, creature, and environment locks;
+- spatial staging and travel direction;
+- camera executability;
+- action density per beat;
+- motion and contact physics;
+- sound-event timing;
+- dialogue feasibility when present;
+- model capability dependencies;
+- ending payoff and reveal timing;
+- prompt contradictions;
+- repeated or redundant instructions;
+- user-specified prompt-length limits.
+
+If an obvious contradiction, missing reference, excessive camera complexity, unsupported dependency, or redundant instruction is found, fix it automatically before output.
+
+A prompt that would predictably require a second QC pass to discover an obvious execution problem is not ready for delivery.
+
+### Reference reality check
+
+Every image, video, character sheet, numbered asset, previous clip, or other reference named in the final prompt must actually exist in the user's current generation inputs or in an explicitly supported connected workflow.
+
+Never write instructions such as "use the second generated video as reference" when that video is not actually supplied to the generation workflow.
+
+If a reference exists only in conversation history but will not be passed to the video model, convert the desired qualities into direct visual, performance, camera, or sound instructions instead of naming the unavailable reference.
+
+### One-take complexity gate
+
+For continuous 15–30 second shots:
+
+- preserve one dominant subject travel direction unless the story intentionally changes it;
+- preserve camera-side logic and avoid unexplained viewpoint teleportation;
+- use only camera-position changes that materially improve readability or retention;
+- do not stack several camera moves inside one short beat;
+- preserve apparent subject speed and camera speed through transitions;
+- use foreground occlusion only when it supports a physically plausible transition;
+- keep one dominant action per beat and at most one supporting reaction or event when reliability is at risk;
+- simplify a beat before adding more camera commands, effects, or adjectives.
+
+A continuous take should feel like one camera physically traveling through one world, not a montage disguised by transition language.
+
+### Prompt density and duplication gate
+
+Prefer execution clarity over prompt length.
+
+Before final output:
+
+- remove duplicated locks that do not add new control;
+- merge repeated negative instructions;
+- remove descriptive adjectives that do not change execution;
+- keep temporal instructions precise but not repetitive;
+- preserve user-specified hard constraints even when compressing;
+- obey any explicit user prompt-length ceiling.
+
+Longer is not automatically safer. If two instructions compete for model attention, keep the instruction that most directly controls the visible result.
+
 ## Production workflow
 
 For each request:
@@ -126,7 +196,7 @@ For each request:
 16. Add dialogue only when it improves the scene and keep it short enough for the available screen time.
 17. Treat ambience, foley, silence, dialogue, and music as filmmaking choices rather than automatic additions.
 18. Adapt prompt density and terminology to the selected video model.
-19. Run silent failure prevention and rewrite weak instructions before output.
+19. Run the mandatory pre-generation QC, including prompt lint, reference reality, model feasibility, one-take complexity when relevant, redundancy reduction, and a final rewrite before output.
 20. When continuity, revision history, or accepted shot state matters, preserve the production ledger instead of rebuilding project state from memory.
 21. When a generated result fails, diagnose and repair the smallest responsible part before increasing prompt complexity.
 
@@ -394,6 +464,8 @@ Adapt prompt length, temporal wording, camera language, dialogue density, audio 
 
 For model-selection and model-specific prompt behavior, read `references/model-adaptation.md` when the named model materially changes execution.
 
+For every final generation prompt, also apply the automatic prompt-lint gate in `references/evaluation-protocol.md` before delivery. The user does not need to request QC separately.
+
 ## Text and graphics
 
 Unless the user requests text, prevent random captions, subtitles, watermarks, logos, interface overlays, gibberish signage, floating typography, and duplicated labels.
@@ -430,6 +502,10 @@ Do not keep adding adjectives to a prompt that is failing on execution clarity.
 ## Silent QA
 
 Before output, check:
+- reference reality: every named reference is actually available to the generation workflow
+- one-take complexity and camera-path executability when relevant
+- prompt contradiction and redundancy
+- user-specified prompt-length ceiling
 
 - first-second hook strength for viral-first work
 - whether storyboard frames are actually necessary
@@ -577,6 +653,8 @@ Optimize for clarity, control, continuity, believable motion, model compatibilit
 For viral-first short-form, never approve an opening merely because it is beautiful. The opening must earn attention within the first second.
 
 For image-driven workflows, never approve an image set merely because each image looks good in isolation. The set must also preserve continuity, readable action, motion handoff, and generation reliability from frame to frame.
+
+Never deliver a first draft as a final generation prompt. Run pre-generation QC, repair the draft internally, then output the corrected version.
 
 Treat reliable retries, continuity survival, and measurable validation as part of production quality, not optional extras.
 
