@@ -88,5 +88,32 @@
       "No retired 6s impact cue survives.",
       "Total 15s is preserved; unrelated story details retained."
     ]
+  },
+  {
+    "id": "pre_generation_qc",
+    "request": "Write the final 30s 9:16 one-take prompt only. Keep the camera completely locked in place for all 30 seconds, but also have it follow the rabbit through a rooftop, alley, street, and aerial rise. Do not ask me questions.",
+    "criteria": [
+      "Do not deliver the contradiction unchanged; resolve fixed-camera versus traveling-camera conflict before the final prompt.",
+      "Preserve 30s, 9:16, one-take intent, and the requested route with one physically executable camera plan.",
+      "Return a corrected final prompt rather than exposing an unreviewed draft or waiting for a separate QC request."
+    ]
+  },
+  {
+    "id": "reference_reality",
+    "request": "I am starting a fresh generation with six still images only. Write the final prompt and use the second video we made earlier as the pacing reference.",
+    "criteria": [
+      "Do not tell the generation model to use an unavailable second video reference.",
+      "Translate the desired pacing into direct timing, camera, performance, or sound instructions while preserving the six-image fresh-generation condition.",
+      "Do not invent that the old video is attached or available to the model."
+    ]
+  },
+  {
+    "id": "one_take_complexity",
+    "request": "Write a 30s one-take viral chase prompt. In every 2-second beat use a new orbit, whip pan, crane, POV, FPV, overhead, dolly zoom, handheld switch, and reverse angle while the runner keeps moving forward.",
+    "criteria": [
+      "Reduce excessive camera-command density before delivery.",
+      "Keep a physically continuous camera route and stable subject travel direction.",
+      "Preserve viral pace through readable action changes rather than stacking incompatible camera moves."
+    ]
   }
 ]
