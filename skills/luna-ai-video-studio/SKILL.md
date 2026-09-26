@@ -122,6 +122,7 @@ Before delivery, verify:
 - character, wardrobe, prop, creature, and environment locks;
 - spatial staging and travel direction;
 - camera executability;
+- action hook framing and source-to-contact-to-response readability when relevant;
 - action density per beat;
 - motion and contact physics;
 - sound-event timing;
@@ -193,10 +194,10 @@ For each request:
 13. Select the camera based on emotion, scale, action readability, reveal timing, and generation reliability.
 14. Direct visible performance through gaze, breathing, posture, hands, weight shift, reaction delay, and movement rhythm rather than abstract emotion labels alone.
 15. Make physical movement produce visible environmental response.
-16. Add dialogue only when it improves the scene and keep it short enough for the available screen time.
+16. Add dialogue only when it improves the scene and keep it short enough for the available clip.
 17. Treat ambience, foley, silence, dialogue, and music as filmmaking choices rather than automatic additions.
 18. Adapt prompt density and terminology to the selected video model.
-19. Run the mandatory pre-generation QC, including prompt lint, reference reality, model feasibility, one-take complexity when relevant, redundancy reduction, and a final rewrite before output.
+19. Run the mandatory pre-generation QC, including prompt lint, reference reality, model feasibility, one-take complexity and action-framing QC when relevant, redundancy reduction, and a final rewrite before output.
 20. When continuity, revision history, or accepted shot state matters, preserve the production ledger instead of rebuilding project state from memory.
 21. When a generated result fails, diagnose and repair the smallest responsible part before increasing prompt complexity.
 
@@ -351,6 +352,18 @@ Prefer one clear primary camera movement per shot unless combined movement is ph
 Do not add camera motion merely to make the result feel more cinematic. A locked frame is valid when it serves the scene better.
 
 Prevent accidental zooming, camera drift, speed mismatch, and broken parallax.
+
+## Action framing and impact tracking
+
+For action, combat, confrontation, and fantasy-action work, read `references/action-framing.md` before planning storyboards, image briefs, final prompts, or reviewing results. Apply its five-point action-framing QC as part of mandatory pre-generation QC, not only when the user asks for a separate check.
+
+Prefer event-led close-ups when they make the first-second hook clearer, but preserve an approved wide or centered opening when scale, symmetry, or the actual input frame makes it more readable. A close-up is not automatically a stronger hook.
+
+Use rule-of-thirds or asymmetrical placement when it separates the subject, threat, and attack direction. Do not force a thirds grid, create a three-panel split screen, or penalize centered composition solely for being centered.
+
+When camera complexity obscures combat, use impact tracking as a fallback: attack source → strike path → contact or block → force transfer → target response. Keep enough of the attacker and target visible to understand the event. Tracking means guiding attention with a feasible camera move, not attaching the lens to a fist or whipping between every limb. Honor explicit fixed-camera instructions by staging the same evidence within a stable view.
+
+Preserve the established camera side, travel direction, and any necessary scale anchors. Keep the camera simpler during complex fantasy action; effects must not conceal contact and response. These choices guide production and do not guarantee model compliance, retention, or a particular view count.
 
 ## Spatial staging
 
@@ -623,7 +636,7 @@ When size matters, show scale through people, architecture, vehicles, windows, t
 
 When the user requests a partial creature or threat reveal, state exactly what becomes visible and what stays hidden.
 
-Protect mystery. Do not convert a partial reveal into an unintended full reveal.
+Protect mystery. Do not convert a partial reveal into an unintended full creature or subject reveal.
 
 ## Retry and repair
 
@@ -711,6 +724,12 @@ Before output, check:
 - reveal timing
 - ending strength
 - generation reliability
+
+- if action is present, whether the opening shot size reveals an event and matches the actual first-frame input
+- if action is present, whether subject, threat, attack direction, and necessary scale remain readable without forced thirds or close-ups
+- if action is present, whether the strike, contact or miss, force transfer, and target response stay visible
+- if action is present, whether impact tracking or a stable view would improve readability while honoring camera and one-take restrictions
+- if action is present, whether effects obscure contact or audio impact timing disagrees with the visible event
 
 - if fantasy action is present, whether the fantasy world rule is explicitly declared when needed
 - if fantasy action is present, whether impossible actions per beat are limited enough to remain readable
@@ -832,4 +851,3 @@ For image-driven workflows, never approve an image set merely because each image
 Never deliver a first draft as a final generation prompt. Run pre-generation QC, repair the draft internally, then output the corrected version.
 
 Treat reliable retries, continuity survival, and measurable validation as part of production quality, not optional extras.
-
