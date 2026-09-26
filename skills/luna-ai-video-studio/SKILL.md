@@ -416,6 +416,151 @@ Examples:
 
 Prevent sliding feet, floating bodies, frozen environments, impossible contact, disappearing objects, unexplained motion, and inconsistent scale.
 
+## Fantasy action specialization
+
+When the requested work includes fantasy, supernatural action, magical combat, impossible movement, non-human power, energy effects, transformation, teleport-adjacent speed, divine force, monster combat, or physics beyond real-world limits, switch on the Fantasy Action Physics Gate.
+
+Do not treat fantasy action as random chaos or as an excuse for unreadable staging.
+
+Use this core rule:
+
+**Impossible action, believable evidence.**
+
+The action may exceed real-world physics, but the viewer should still understand where the force came from, how it moved, what it affected, and what changed afterward.
+
+### Fantasy Action Physics Gate
+
+Before outputting a fantasy-action prompt, silently pass this sequence:
+
+DECLARE FANTASY WORLD RULE
+→ LIMIT IMPOSSIBLE ACTIONS PER BEAT
+→ DESCRIBE PERCEIVED MOTION
+→ PRESERVE CAUSE AND EFFECT
+→ ADD PHYSICAL EVIDENCE
+→ CHECK CAMERA/ACTION LOAD
+→ FINAL FANTASY QC
+
+### Declare the fantasy world rule first
+
+Before describing the action itself, establish that the scene belongs to a cinematic fantasy world when that distinction affects generation.
+
+Clarify that supernatural speed, force, jumps, reactions, transformations, energy, or magical movement are intentional.
+
+Characters may exceed ordinary human limits, while the environment should still respond coherently and visual causality should remain readable.
+
+Do not let the model flatten intended fantasy action into plain realistic motion.
+
+### Describe perceived motion instead of relying on speed adjectives
+
+Do not rely only on phrases such as:
+- extremely fast
+- super fast
+- lightning fast
+- insanely fast
+
+Prefer visible evidence of speed:
+- an opponent barely has time to react;
+- the body crosses the distance faster than the eye can comfortably follow;
+- displaced rain, snapping fabric, dust, water, sparks, or delayed reactions reveal the acceleration;
+- the movement remains continuous when teleportation is not intended.
+
+If the user wants overwhelming speed but not literal teleportation, specify that the character remains continuous through motion and that the path is still traceable through environmental evidence.
+
+### Limit impossible actions per beat
+
+Avoid stacking too many supernatural actions into one short beat.
+
+Do not overload one beat with several of these at once:
+- ultra-fast dash
+- teleportation
+- multiple spinning attacks
+- airborne rotation
+- energy burst
+- environment destruction
+- complex camera orbit
+
+Choose one dominant fantasy action per beat and at most one supporting reaction or effect when reliability is at risk.
+
+If the result would be hard to read, simplify the beat before adding more spectacle.
+
+### Preserve source, path, impact, and aftermath
+
+For magical force, energy attacks, summoned objects, celestial objects, portals, dimensional openings, or other supernatural motion, define:
+
+1. source
+2. travel path
+3. impact or destination
+4. aftermath
+
+Do not let magical action appear disconnected from its origin.
+
+If a portal, rupture, tear in the sky, crater, hole, or dimensional opening is the source of an effect, keep the source position spatially consistent with whatever emerges from it.
+
+### Preserve physical evidence
+
+Fantasy motion should still leave readable evidence in the world when appropriate:
+- hair and clothing follow inertia;
+- feet interact with surfaces;
+- rain, dust, water, smoke, debris, sparks, or loose objects react;
+- impacts transfer force;
+- opponents show a readable reaction;
+- scale changes remain anchored to familiar objects;
+- magical travel remains traceable unless true disappearance is intentional.
+
+The fantasy event may exceed realism, but its visible consequences should remain coherent.
+
+### Balance fantasy action and camera complexity
+
+Do not push extreme subject action and extreme camera movement to maximum complexity at the same moment.
+
+When the fantasy action itself is complex:
+- simplify the camera;
+- preserve subject readability;
+- preserve impact readability.
+
+When the camera performs an intentionally impossible or highly dynamic move:
+- simplify the action inside that beat;
+- keep one dominant readable subject motion.
+
+Spectacle should remain legible.
+
+### Fantasy action in one-take scenes
+
+For continuous fantasy action:
+- preserve one dominant subject path unless a direction change is motivated;
+- avoid unexplained spatial resets;
+- preserve camera-side logic;
+- escalate supernatural events in stages;
+- keep the first-second event readable without sound;
+- maintain continuity of source, path, impact, and environmental response.
+
+### Contact and reaction in fantasy fights
+
+When fantasy combat includes contact:
+- the target must visibly react;
+- the attack must transfer force;
+- body weight and timing should remain intentional;
+- the environment may also react;
+- impacts should not look like disconnected animations.
+
+If the strike is faster than normal human reaction time, a slightly delayed reaction is acceptable, but the cause-and-effect link must remain clear.
+
+### Transformation and magical reveal continuity
+
+For transformations, summoning, magical reveals, or supernatural morphs:
+- preserve a readable before-state;
+- show the trigger;
+- show the visible transition;
+- show the stabilized after-state.
+
+Do not let transformation read as random replacement or unrelated flicker.
+
+### Fantasy scale clarity
+
+When a fantasy object, creature, or celestial body changes size, use familiar anchors such as people, vehicles, buildings, windows, streets, rooftops, terrain, or furniture.
+
+Do not rely on vague scale adjectives without visible comparison.
+
 ## Continuity
 
 For connected clips preserve identity, hair, wardrobe, footwear, accessories, props, character count, hand state, screen direction, travel direction, damage, dirt, wetness, lighting direction, environment, object placement, creature state, and story state.
@@ -499,6 +644,27 @@ If the same failure repeats, simplify in this order:
 
 Do not keep adding adjectives to a prompt that is failing on execution clarity.
 
+
+When a fantasy-action result fails, simplify in this order:
+
+1. reduce simultaneous supernatural actions;
+2. reduce camera complexity;
+3. reduce transformation complexity;
+4. strengthen source-to-impact logic;
+5. replace abstract speed wording with visible evidence wording;
+6. reduce environmental chaos while preserving the fantasy event;
+7. rebuild the shot around one dominant supernatural action.
+
+Common fantasy-action failures include:
+- motion reading as broken teleportation;
+- magical effects appearing without a clear source;
+- action and camera both becoming too chaotic;
+- impact without believable reaction;
+- transformation reading as random replacement;
+- fantasy object scale becoming unclear.
+
+Repair the smallest responsible failure first.
+
 ## Silent QA
 
 Before output, check:
@@ -545,6 +711,15 @@ Before output, check:
 - reveal timing
 - ending strength
 - generation reliability
+
+- if fantasy action is present, whether the fantasy world rule is explicitly declared when needed
+- if fantasy action is present, whether impossible actions per beat are limited enough to remain readable
+- if fantasy action is present, whether motion is described through visible evidence rather than speed adjectives alone
+- if fantasy action is present, whether magical force, summoned objects, portals, or celestial objects have a clear source, path, impact, and aftermath
+- if fantasy action is present, whether camera complexity and action complexity are balanced
+- if fantasy action is present, whether supernatural motion produces coherent environmental response
+- if fantasy action is present, whether non-teleport speed remains continuous when teleportation was not intended
+- if fantasy action is present, whether transformations and reveals preserve a readable before-state, transition, and after-state
 
 Rewrite weak instructions before answering.
 
