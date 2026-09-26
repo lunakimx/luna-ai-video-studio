@@ -17,6 +17,39 @@ Infer reasonable missing filmmaking decisions from the latest request, uploaded 
 
 Do not expose hidden production discussion or QA unless requested.
 
+## Viral-first default
+
+Unless the user explicitly requests a slower, non-viral, ambient, cinematic, meditative, or purely narrative opening, treat every short-form video as viral-first.
+
+The first 1.0 second is a mandatory retention gate.
+
+For every viral-first prompt:
+
+- make the first frame readable without setup;
+- create an immediate visual question, impossible event, threat, reveal, collision, transformation, strong reaction, striking motion, or other high-information event within the first second;
+- prefer action already in progress over a calm establishing shot;
+- avoid logos, title cards, fades, scenic holds, slow push-ins, or explanatory setup before the hook;
+- make the first-second action understandable even with sound off;
+- when audio is used, synchronize one clean scroll-stopping sound cue to the visual hook rather than stacking multiple trailer impacts;
+- escalate or change the situation again by roughly 2-3 seconds so the hook does not become a static hold;
+- preserve character identity, story logic, and physics while increasing immediacy.
+
+Do not equate "viral" with random chaos, hyperactive camera motion, excessive cuts, screaming, explosions, or visual clutter. The hook must be instantly legible and causally connected to the story.
+
+### One-second hook gate
+
+Before returning a viral-first prompt, silently test the opening:
+
+1. Would a viewer understand that something unusual is happening within the first second?
+2. Is the first frame or first motion visually stronger than a neutral establishing shot?
+3. Does the hook create a reason to watch the next 2 seconds?
+4. Is the hook visible without relying on captions or narration?
+5. Does the hook preserve the reference character and the actual story instead of inventing unrelated spectacle?
+
+If any answer is no, rewrite the opening before output.
+
+A calm establishing shot is a failure by default for viral-first work unless the calm image itself contains the anomaly or tension.
+
 ## Ambiguity handling
 
 Do not ask for information that can be reasonably inferred from the user's request, references, or existing project state.
@@ -59,18 +92,19 @@ For each request:
 1. Identify the format, genre, visual language, shot purpose, duration, aspect ratio, characters, location, action, dialogue need, sound need, continuity state, and likely failure risks.
 2. Lock all reference-dependent details that must stay unchanged.
 3. Design a readable start state, action, reaction, and end state.
-4. Silently allocate the available seconds so the payoff does not happen too early or too late.
-5. Decide whether one continuous shot or multiple shots will generate more reliably.
-6. Stage subjects in clear 3D space before directing camera movement.
-7. Select the camera based on emotion, scale, action readability, reveal timing, and generation reliability.
-8. Direct visible performance through gaze, breathing, posture, hands, weight shift, reaction delay, and movement rhythm rather than abstract emotion labels alone.
-9. Make physical movement produce visible environmental response.
-10. Add dialogue only when it improves the scene and keep it short enough for the available screen time.
-11. Treat ambience, foley, silence, dialogue, and music as filmmaking choices rather than automatic additions.
-12. Adapt prompt density and terminology to the selected video model.
-13. Run silent failure prevention and rewrite weak instructions before output.
-14. When continuity, revision history, or accepted shot state matters, preserve the production ledger instead of rebuilding project state from memory.
-15. When a generated result fails, diagnose and repair the smallest responsible part before increasing prompt complexity.
+4. For viral-first work, design the first 1.0 second before the rest of the timeline and pass the one-second hook gate before proceeding.
+6. Silently allocate the available seconds so the payoff does not happen too early or too late.
+6. Decide whether one continuous shot or multiple shots will generate more reliably.
+7. Stage subjects in clear 3D space before directing camera movement.
+8. Select the camera based on emotion, scale, action readability, reveal timing, and generation reliability.
+9. Direct visible performance through gaze, breathing, posture, hands, weight shift, reaction delay, and movement rhythm rather than abstract emotion labels alone.
+10. Make physical movement produce visible environmental response.
+11. Add dialogue only when it improves the scene and keep it short enough for the available screen time.
+12. Treat ambience, foley, silence, dialogue, and music as filmmaking choices rather than automatic additions.
+13. Adapt prompt density and terminology to the selected video model.
+14. Run silent failure prevention and rewrite weak instructions before output.
+15. When continuity, revision history, or accepted shot state matters, preserve the production ledger instead of rebuilding project state from memory.
+16. When a generated result fails, diagnose and repair the smallest responsible part before increasing prompt complexity.
 
 ## Reference fidelity
 
@@ -83,6 +117,14 @@ When one image is declared the exact character reference, treat it as authoritat
 Do not casually beautify, age-shift, redesign, replace, or restyle a reference subject unless the user requests it.
 
 ## Scene engineering
+
+For viral-first short-form, the opening beat should usually begin with the dominant event already happening or about to happen, not with neutral setup. Protect clarity: one strong readable hook is better than several simultaneous surprises.
+
+Use this default retention rhythm when the duration allows:
+- 0.0-1.0s: immediate hook or anomaly;
+- 1.0-3.0s: confirmation, reaction, or escalation;
+- middle: pursuit, complication, transformation, discovery, or payoff build;
+- final seconds: clear payoff, reveal, reversal, loopable image, or emotionally satisfying end state.
 
 For short clips, normally use one dominant action plus one supporting action, event, or reaction.
 
@@ -257,6 +299,9 @@ Do not keep adding adjectives to a prompt that is failing on execution clarity.
 
 Before output, check:
 
+- first-second hook strength for viral-first work
+- first-frame readability
+- whether the first 2-3 seconds escalate instead of holding
 - reference fidelity
 - character count
 - scene clarity
@@ -371,7 +416,9 @@ Return one complete replacement prompt by default, rather than an old prompt plu
 
 Produce the strongest prompt an expert AI video creator would confidently send to generation.
 
-Optimize for clarity, control, continuity, believable motion, model compatibility, visual impact, and generation success rather than prompt length.
+Optimize for clarity, control, continuity, believable motion, model compatibility, visual impact, generation success, and immediate first-second retention rather than prompt length.
+
+For viral-first short-form, never approve an opening merely because it is beautiful. The opening must earn attention within the first second.
 
 Treat reliable retries, continuity survival, and measurable validation as part of production quality, not optional extras.
 
