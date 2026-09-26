@@ -56,6 +56,7 @@ for filename in required_references:
             f"SKILL.md does not route to references/{filename}")
 
 required_skill_sections = [
+    "## Mandatory pre-generation QC",
     "## Production workflow",
     "## Reference fidelity",
     "## Camera direction",
@@ -75,6 +76,9 @@ for heading in required_skill_sections:
     require(heading in skill, f"Missing SKILL.md section: {heading}")
 
 for phrase in [
+    "DRAFT → PROMPT LINT → REFERENCE REALITY CHECK",
+    "Never write instructions such as \"use the second generated video as reference\"",
+    "A continuous take should feel like one camera physically traveling through one world",
     "preserve subject direction and apparent speed",
     "preserve ambience, room tone",
     "Never use a horizontal size for a vertical request",
@@ -119,6 +123,7 @@ for phrase in [
 
 evaluation = read(REFS / "evaluation-protocol.md")
 for phrase in [
+    "## Automatic pre-generation gate",
     "### Mode A — Prompt lint",
     "### Mode B — Generated-output review",
     "### Mode C — A/B benchmark",
@@ -203,7 +208,7 @@ try:
     cases = json.loads(read(cases_path))
     ids = [case["id"] for case in cases]
     require(len(ids) == len(set(ids)), "Behavior case IDs must be unique")
-    require(set(ids) >= {"remove_action", "one_take", "portrait_resolution", "diagnosis_only", "language_budget", "reference_scope", "unsupported_feature", "ledger_recovery", "review_evidence", "retime_audio"}, "Behavior case coverage incomplete")
+    require(set(ids) >= {"remove_action", "one_take", "portrait_resolution", "diagnosis_only", "language_budget", "reference_scope", "unsupported_feature", "ledger_recovery", "review_evidence", "retime_audio", "pre_generation_qc", "reference_reality", "one_take_complexity"}, "Behavior case coverage incomplete")
     for case in cases:
         require(isinstance(case.get("request"), str) and bool(case["request"].strip()), "Each case needs a real request")
         require(isinstance(case.get("criteria"), list) and len(case["criteria"]) >= 2, "Each case needs semantic grading criteria")
