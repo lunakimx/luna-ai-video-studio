@@ -1,6 +1,6 @@
 ---
 name: luna-ai-video-studio
-description: Turn short or rough AI-video ideas into production-ready prompts for models such as Seedance, Veo, Kling, Hailuo, Runway, Grok, DomoAI, and other video generators. Use when the user wants to create, revise, continue, review, benchmark, or validate AI video shots, including character-reference work, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.
+description: Turn short or rough AI-video ideas into production-ready viral-first workflows and prompts for models such as Seedance, Veo, Kling, Hailuo, Runway, Grok, DomoAI, and other video generators. Use when the user wants to create, revise, continue, review, benchmark, or validate AI video work, including 1-second hook design, concept development, scripting, beat sheets, storyboard planning, image-reference planning, character-reference work, image-generation briefs, image QA, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.nce work, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.
 ---
 
 # Luna AI Video Studio
@@ -79,7 +79,26 @@ When the user intentionally changes one approved element, change it and all depe
 
 This skill plans, writes, diagnoses, and reviews. Applying it alone does not authorize generation, paid jobs, media uploads, publishing, or edits to source footage. Use a separate execution workflow only when the user explicitly requests that action.
 
-Honor diagnosis-only, script-only, prompt-only, and user-specified output formats. A review request does not authorize rewriting or modifying the source artifact.
+This skill also owns the upstream creative planning needed for reliable short-form production:
+- viral hook design
+- concept framing
+- script and beat-sheet writing
+- storyboard design
+- image-reference planning
+- image-generation prompt planning
+- image QA for continuity and motion readiness
+- final video prompt assembly
+- output review and repair
+
+When image generation is part of the workflow, decide:
+- whether a character sheet is actually needed;
+- whether the target workflow can treat a character sheet separately from sequential scene images;
+- how many scene images are truly necessary;
+- which images are essential, optional, or redundant;
+- the job of each image in the final video pipeline;
+- the acceptance criteria each image must pass before video generation.
+
+Honor diagnosis-only, script-only, prompt-only, image-plan-only, storyboard-only, and user-specified output formats. A review request does not authorize rewriting or modifying the source artifact.
 
 When available, use `seedance-2-5-prompting` selectively for Seedance camera paths, continuous takes, exact reference tags, character counting, and repeated revision cleanup. Use `seedance-2-5-video-director` selectively for dialogue, emotional performance, and physical contact-response. Resolve companions by their installed skill names, never hard-coded personal IDs. If absent, continue using this skill; do not install them automatically.
 
@@ -89,22 +108,135 @@ Keep Luna's approved story and project state authoritative. Load only the releva
 
 For each request:
 
-1. Identify the format, genre, visual language, shot purpose, duration, aspect ratio, characters, location, action, dialogue need, sound need, continuity state, and likely failure risks.
-2. Lock all reference-dependent details that must stay unchanged.
-3. Design a readable start state, action, reaction, and end state.
+1. Identify the format, genre, visual language, shot purpose, duration, aspect ratio, characters, location, action, dialogue need, sound need, continuity state, target platform when relevant, and likely failure risks.
+2. Identify whether the user needs only a final video prompt or a full upstream workflow including hook design, scripting, storyboard planning, and image planning.
+3. Lock all reference-dependent details that must stay unchanged.
 4. For viral-first work, design the first 1.0 second before the rest of the timeline and pass the one-second hook gate before proceeding.
-6. Silently allocate the available seconds so the payoff does not happen too early or too late.
-6. Decide whether one continuous shot or multiple shots will generate more reliably.
-7. Stage subjects in clear 3D space before directing camera movement.
-8. Select the camera based on emotion, scale, action readability, reveal timing, and generation reliability.
-9. Direct visible performance through gaze, breathing, posture, hands, weight shift, reaction delay, and movement rhythm rather than abstract emotion labels alone.
-10. Make physical movement produce visible environmental response.
-11. Add dialogue only when it improves the scene and keep it short enough for the available screen time.
-12. Treat ambience, foley, silence, dialogue, and music as filmmaking choices rather than automatic additions.
-13. Adapt prompt density and terminology to the selected video model.
-14. Run silent failure prevention and rewrite weak instructions before output.
-15. When continuity, revision history, or accepted shot state matters, preserve the production ledger instead of rebuilding project state from memory.
-16. When a generated result fails, diagnose and repair the smallest responsible part before increasing prompt complexity.
+5. Write or infer the story beat structure: hook, setup, action, escalation, reaction, and payoff.
+6. Decide whether storyboard images are needed.
+7. If images are needed, determine the minimum useful number of images.
+8. Decide whether a character sheet helps or harms the selected workflow.
+9. Design each storyboard frame or image asset around motion continuity, action clarity, and generation reliability rather than beauty alone.
+10. Silently allocate the available seconds so the payoff does not happen too early or too late.
+11. Decide whether one continuous shot or multiple shots will generate more reliably.
+12. Stage subjects in clear 3D space before directing camera movement.
+13. Select the camera based on emotion, scale, action readability, reveal timing, and generation reliability.
+14. Direct visible performance through gaze, breathing, posture, hands, weight shift, reaction delay, and movement rhythm rather than abstract emotion labels alone.
+15. Make physical movement produce visible environmental response.
+16. Add dialogue only when it improves the scene and keep it short enough for the available screen time.
+17. Treat ambience, foley, silence, dialogue, and music as filmmaking choices rather than automatic additions.
+18. Adapt prompt density and terminology to the selected video model.
+19. Run silent failure prevention and rewrite weak instructions before output.
+20. When continuity, revision history, or accepted shot state matters, preserve the production ledger instead of rebuilding project state from memory.
+21. When a generated result fails, diagnose and repair the smallest responsible part before increasing prompt complexity.
+
+## Script, storyboard, and image pipeline
+
+For short-form viral video work, do not jump directly from a rough idea to a final video prompt when intermediate planning would materially improve the result.
+
+Use this planning ladder when useful:
+
+1. hook concept
+2. one-line premise
+3. short script or beat sheet
+4. storyboard frame plan
+5. image-asset necessity check
+6. character-sheet necessity check
+7. image-generation brief
+8. image QA and acceptance check
+9. final video prompt
+10. repair plan if generation fails
+
+### Script writing
+
+When the user needs story development, produce a concise script or beat sheet that clearly defines:
+- the first-second hook;
+- the setup;
+- the main action;
+- the escalation;
+- the reaction;
+- the ending payoff, reveal, reversal, or loopable final image.
+
+For short-form work, prefer a clean cause-and-effect story over a loose mood sequence.
+
+### Storyboard planning
+
+When storyboarding, break the video into only as many key images as are actually useful for generation reliability.
+
+For each storyboard frame, define:
+- purpose of the frame;
+- what must be visible;
+- character state;
+- prop state;
+- environment state;
+- camera relation;
+- motion handoff into the next beat;
+- whether the frame is essential, optional, or redundant.
+
+Do not generate extra storyboard frames merely because more images seem helpful. Too many images may weaken continuity or cause the model to interpret them as disconnected scenes.
+
+### Image-asset necessity rule
+
+Before planning image generation, silently test:
+- Is a separate character sheet truly needed?
+- Can the workflow accept a dedicated character-reference input, or only sequential scene images?
+- How many scene images are necessary for this duration and shot complexity?
+- Can two adjacent beats be merged into one stronger image?
+- Is any image included only because it looks attractive rather than because it improves generation reliability?
+
+Prefer the minimum number of high-signal images needed to stabilize the video.
+
+### Character sheet rule
+
+Use a character sheet only when it improves identity stability and the target workflow can clearly treat it as a character reference rather than as the first story frame.
+
+If the workflow only accepts sequential images:
+- do not automatically place a character sheet first;
+- do not let a reference board become an accidental opening shot;
+- rely on strong identity-lock wording when the character sheet would harm sequence clarity.
+
+### Image-generation brief
+
+When an image must be generated, provide a brief that specifies:
+- what story beat the image represents;
+- what must remain locked from previous images;
+- what must change;
+- why the image is needed for the final video;
+- what camera angle, pose, and composition are most useful for motion carry-forward.
+
+When the user explicitly asks to generate the image, use the available image-generation workflow and preserve all approved locks.
+
+### Image QA
+
+Before accepting an image for the video pipeline, evaluate:
+- character identity consistency;
+- face and body proportions;
+- clothing and accessory consistency;
+- prop continuity;
+- motion readiness of the pose;
+- clarity of the intended action;
+- left/right orientation stability;
+- hand, foot, ear, tail, and limb integrity;
+- environment continuity;
+- scale clarity;
+- camera continuity;
+- transition usefulness to the next image;
+- first-second hook strength if the image is used at the opening.
+
+Reject or revise images that are attractive but poor for motion continuity, weak in action clarity, or likely to confuse the video model.
+
+### Final image set validation
+
+Before writing the final video prompt, validate the selected image set as a sequence:
+- Are all included images necessary?
+- Do they form a coherent visual progression?
+- Is the opening image or opening beat strong enough for retention?
+- Are any adjacent images redundant?
+- Is the ending image strong enough to deliver payoff?
+- Would removing one image improve continuity?
+- Does the image order preserve character, prop, scale, lighting, and travel direction?
+
+Prefer a tighter stronger image sequence over a larger weaker one.
 
 ## Reference fidelity
 
@@ -300,6 +432,12 @@ Do not keep adding adjectives to a prompt that is failing on execution clarity.
 Before output, check:
 
 - first-second hook strength for viral-first work
+- whether storyboard frames are actually necessary
+- whether the image count is minimal and efficient
+- whether the opening frame is hook-strong enough
+- whether selected images are motion-friendly, not just attractive
+- whether the character-sheet decision matches the target workflow
+- whether any image is redundant or weakens continuity
 - first-frame readability
 - whether the first 2-3 seconds escalate instead of holding
 - reference fidelity
@@ -359,17 +497,33 @@ Track generation reliability through first-pass success, repair passes, continui
 
 ## Output
 
-For most generation requests, keep the response compact and provide:
+For most generation requests, keep the response compact and provide only the pieces the user actually needs.
 
+Possible output blocks include:
+
+### HOOK
+### LOGLINE
+### SCRIPT / BEAT SHEET
+### STORYBOARD
+### IMAGE PLAN
+### IMAGE QA
 ### FINAL VIDEO PROMPT
-
-Then add only when useful:
-
 ### DIALOGUE
 ### AUDIO PROMPT
 ### AVOID
+### FAILURE DIAGNOSIS
+### REVISION PATCH
+### RETRY PROMPT
+### SHOT LEDGER UPDATE
+### EVAL REPORT
+### A/B BENCHMARK
 
-Do not make the user read the production meeting before they can generate.
+Default behavior:
+- If the user asks for a final video prompt only, do not force all upstream sections.
+- If the user asks to develop the project from scratch, it is valid to produce hook, script, storyboard, image plan, and final prompt in sequence.
+- If the user asks for image generation planning, include IMAGE PLAN and IMAGE QA when useful.
+- If the user asks only for image generation, do not force a video prompt.
+- If the user asks for review only, do not rewrite or regenerate unless requested.
 
 For several scenes, organize prompts clearly by scene.
 
@@ -389,6 +543,8 @@ For validation work, add only when useful:
 
 ### EVAL REPORT
 ### A/B BENCHMARK
+
+Keep prompt-level validation separate from generated-output validation.
 
 ## Review mode
 
@@ -419,6 +575,8 @@ Produce the strongest prompt an expert AI video creator would confidently send t
 Optimize for clarity, control, continuity, believable motion, model compatibility, visual impact, generation success, and immediate first-second retention rather than prompt length.
 
 For viral-first short-form, never approve an opening merely because it is beautiful. The opening must earn attention within the first second.
+
+For image-driven workflows, never approve an image set merely because each image looks good in isolation. The set must also preserve continuity, readable action, motion handoff, and generation reliability from frame to frame.
 
 Treat reliable retries, continuity survival, and measurable validation as part of production quality, not optional extras.
 
