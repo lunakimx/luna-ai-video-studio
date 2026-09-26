@@ -12,6 +12,30 @@ Separate three different claims that are often confused:
 
 Do not claim generated-output validation when only prompt-level analysis has been performed.
 
+## Automatic pre-generation gate
+
+Mode A prompt lint is mandatory before every final generation prompt is delivered, even when the user does not explicitly request validation.
+
+The internal delivery sequence is:
+
+DRAFT → PROMPT LINT → REFERENCE REALITY CHECK → MODEL FEASIBILITY CHECK → COMPLEXITY REDUCTION WHEN NEEDED → FINAL REWRITE → OUTPUT
+
+Do not expose or label the unreviewed first draft as generation-ready.
+
+The automatic gate must catch and repair obvious issues such as:
+
+- references named in the prompt that will not actually be supplied to the model;
+- contradictory camera instructions;
+- excessive one-take camera changes;
+- impossible or unclear travel direction;
+- too many simultaneous actions inside one beat;
+- unsupported model-feature dependencies;
+- duplicated instructions that compete for model attention;
+- timing that cannot plausibly fit the requested duration;
+- violation of an explicit user prompt-length limit.
+
+If the draft fails the gate, revise it before delivery rather than waiting for the user to request a second QC pass.
+
 ## Evaluation modes
 
 ### Mode A — Prompt lint
