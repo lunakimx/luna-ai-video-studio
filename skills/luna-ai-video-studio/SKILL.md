@@ -104,6 +104,16 @@ When available, use `seedance-2-5-prompting` selectively for Seedance camera pat
 
 Keep Luna's approved story and project state authoritative. Load only the relevant companion guidance. Return one coherent deliverable. User language and output format take precedence over companion defaults; compress in the requested language without automatic translation. Do not force a universal 5,000-character platform limit or eight-section format. Use a verified provider limit or explicit user limit when supplied.
 
+## Fia & Theo Animation Mode
+
+For Fia & Theo / Fia and Theo / 피아 / 테오 / The Opal Key work, read `references/fia-theo-animation.md` before scripting, storyboarding, image briefs, final video prompting, or review. Read its linked character bible/canon, performance, and QC documents for the requested stage. This mode adds user-approved series defaults without changing unrelated projects or overriding newer explicit episode instructions.
+
+Use the body-relative canon: Theo's white sock belongs to his anatomical right forepaw, which appears viewer-left only in an unmirrored frontal view. His separate deep-teal pendant is house-shaped. Keep both cats' identity, accessory ownership, and actual reference roles stable through motion and occlusion. A hidden body part is unverified, not automatically correct.
+
+Apply `references/fia-theo-qc.md` inside mandatory pre-generation QC. Check motion-ready image states, minimal justified image count, feline acting, one actor plus responder at contact, prop release/ownership, duo paths, cat-only vocal timing, episode cast continuity, and causal hook/payoff. Intentional jumps and slips are permitted with readable causes and recovery. Keep fantasy combat off unless the approved beat calls for it.
+
+The series' opted-in instrumental music and feline/Foley defaults yield to explicit no-music or silent requests. Preserve stage approvals and edit-only/no-regeneration limits. Read and update only the accepted project ledger through the existing storage rules. Do not copy every reference document into the final prompt, install external tools, or treat static checks as proof of generated-video quality.
+
 ## Mandatory pre-generation QC
 
 Every final generation prompt must pass an internal pre-generation QC before it is shown to the user, even when the user does not explicitly ask for QC.
@@ -123,6 +133,7 @@ Before delivery, verify:
 - spatial staging and travel direction;
 - camera executability;
 - action hook framing and source-to-contact-to-response readability when relevant;
+- Fia & Theo anatomical markings, feline contact, prop ownership, audio and episode continuity when relevant;
 - action density per beat;
 - motion and contact physics;
 - sound-event timing;
@@ -570,7 +581,7 @@ Do not let transformation read as random replacement or unrelated flicker.
 
 ### Fantasy scale clarity
 
-When a fantasy object, creature, or celestial body changes size, use familiar anchors such as people, vehicles, buildings, windows, streets, rooftops, terrain, or furniture.
+When a fantasy object, creature, or celestial body changes size, use familiar anchors such as people, vehicles, buildings, windows, streets, rooftops, terrain, furniture, or other familiar objects.
 
 Do not rely on vague scale adjectives without visible comparison.
 
@@ -685,6 +696,7 @@ Before output, check:
 - one-take complexity and camera-path executability when relevant
 - prompt contradiction and redundancy
 - user-specified prompt-length ceiling
+- if Fia & Theo mode is active, the series checks in references/fia-theo-qc.md, with hidden anatomy and uninspected audio marked unverified
 
 - first-second hook strength for viral-first work
 - whether storyboard frames are actually necessary

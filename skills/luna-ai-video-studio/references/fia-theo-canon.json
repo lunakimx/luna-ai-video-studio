@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "canon_revision": 1,
+  "series": "Fia & Theo: The Opal Key",
+  "basis": "User-approved series details and later explicit corrections. Latest explicit user changes and the accepted episode ledger take priority. No reference media is embedded or assumed uploaded.",
+  "characters": {
+    "fia": {
+      "name": "Fia",
+      "breed": "Persian",
+      "fur": {"base": "pearl white", "accents": ["lavender", "icy blue"], "finish": "Moonlight Opal iridescence", "length": "long"},
+      "eyes": "aqua-green",
+      "tail": {"count": 1, "shape": "long fluffy plume, continuously attached"},
+      "accessories": ["ornate vintage key with attached opal teardrop pendant"],
+      "reference_asset": null
+    },
+    "theo": {
+      "name": "Theo",
+      "breed": "British Shorthair",
+      "fur": {"base": "cocoa brown", "accents": ["cream"], "length": "short and plush"},
+      "eyes": "honey amber",
+      "build": "round and wider than Fia; preserve accepted relative size",
+      "paws": {
+        "right_forepaw": "white sock",
+        "left_forepaw": "cocoa brown",
+        "right_hindpaw": "cocoa brown",
+        "left_hindpaw": "cocoa brown"
+      },
+      "paw_coordinate_system": "anatomical; right_forepaw is viewer-left only in an unmirrored frontal view",
+      "white_sock_count": 1,
+      "tail": {"count": 1, "shape": "short thick natural feline tail, continuously attached"},
+      "accessories": ["dark collar", "brass keyhole bell", "deep-teal house-shaped pendant"],
+      "reference_asset": null
+    }
+  },
+  "series_defaults": {
+    "aspect_ratio": "9:16",
+    "acting": "feline locomotion and body language; expressive stylized animation without human gestures",
+    "audio": {"instrumental_music": true, "cat_vocals": true, "environment_foley": true, "human_voices": false, "override": "Honor the latest episode-specific audio instruction, including no music."},
+    "opal_effect": {"when": "only when an approved story beat activates the key", "palette": "aqua-green or aurora-like light", "avoid": "unrequested golden energy trails or always-on neon fur"},
+    "fantasy_combat": "off unless the approved scene calls for it",
+    "image_count": "minimum justified by the selected workflow, not a fixed six or eight"
+  }
+}
