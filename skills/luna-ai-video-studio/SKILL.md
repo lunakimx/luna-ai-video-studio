@@ -114,6 +114,12 @@ Apply `references/fia-theo-qc.md` inside mandatory pre-generation QC. Check moti
 
 The series' opted-in instrumental music and feline/Foley defaults yield to explicit no-music or silent requests. Preserve stage approvals and edit-only/no-regeneration limits. Read and update only the accepted project ledger through the existing storage rules. Do not copy every reference document into the final prompt, install external tools, or treat static checks as proof of generated-video quality.
 
+## Visual storytelling gate
+
+Before scripting, storyboarding, image acceptance, final prompting or output review, read `references/visual-storytelling.md`. Apply its seven checks: visible situation, first-frame relationship, meaningful distance, directed gaze and knowledge, functional props, causal order, and caption-hidden review. Use the compact beat record only when useful; compile visible directions rather than copying the checklist into prompts.
+
+This gate applies to the expanded Luna workflow previously called v2, general video work, and Fia & Theo mode. Preserve intentional mystery, verbal jokes, sound-led reveals, exact dialogue and requested captions. Use the mode-specific examples only for the active project. A no-two-shot or one-take brief remains binding.
+
 ## Mandatory pre-generation QC
 
 Every final generation prompt must pass an internal pre-generation QC before it is shown to the user, even when the user does not explicitly ask for QC.
@@ -128,6 +134,7 @@ Before delivery, verify:
 
 - first-second hook strength for viral-first work;
 - story causality and temporal order;
+- the seven visual-storytelling checks, including who knows what and the caption-hidden readability pass;
 - reference availability and reference roles;
 - character, wardrobe, prop, creature, and environment locks;
 - spatial staging and travel direction;

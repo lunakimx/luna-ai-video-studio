@@ -10,6 +10,10 @@ Use the existing `action-framing.md` for chase and collision readability. Load t
 
 Scope remains gated: concept approval is not image-generation approval; image approval is not video-generation approval. An edit-only request does not authorize regeneration. An explicit request to generate a particular image permits that image, not the full downstream production. Do not install providers, spend credits, publish, or alter source footage from a planning request alone.
 
+## Visual storytelling integration
+
+Read `visual-storytelling.md` before episode development, image acceptance and final prompt QC. Apply all seven checks with feline acting, anatomical identity locks and current episode knowledge. Use distance and gaze to make the cause of jealousy, protection, pursuit or food-seeking readable. Honor single-character coverage, exact reference roles and continuous-take restrictions when specified. Caption-hidden review does not remove approved music or feline/Foley audio; an explicitly requested human-and-cat sitcom uses the separate project-local branch in that reference.
+
 ## Episode development
 
 Recover the accepted state, then choose one immediate visual event for 0.0-1.0 seconds. Match the actual first-frame input. Close-ups, two-shots, centered framing, and thirds are options, not compulsory formats. A strong expression still needs a visible cause or unresolved situation; do not spend the opening on a neutral pose.

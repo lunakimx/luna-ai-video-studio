@@ -36,6 +36,12 @@ The automatic gate must catch and repair obvious issues such as:
 
 If the draft fails the gate, revise it before delivery rather than waiting for the user to request a second QC pass.
 
+## Visual readability gate
+
+Apply `visual-storytelling.md` during Mode A and Mode B. Review all seven checks and record PASS, REVISE, UNVERIFIED or N/A at the correct evidence level. In Mode A inspect the specified cue, knowledge, action and consequence. In Mode B inspect what actually appeared, using actual timestamps when available. Run a caption-hidden visual pass and a separate audio pass for dialogue/sound-dependent scenes. Do not delete requested accessibility captions or exact dialogue to pass this diagnostic.
+
+If the intended visual cause, relevant character knowledge or consequence is unreadable, mark REVISE regardless of the average score. Deliberate mystery and verbal-only information are permitted when their scope is explicit and the visible scene remains coherent. A prompt exercise does not validate generated-video behavior.
+
 ## Evaluation modes
 
 ### Mode A — Prompt lint

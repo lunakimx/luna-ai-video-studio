@@ -20,6 +20,10 @@ Prompt QC can verify that an instruction is coherent without claiming the output
 8. Audio: named feline sound source, no accidental human voice, grip-compatible mouth action, contact-aligned Foley, music matches the event and honors any no-music instruction. Audio not actually inspected remains unverified.
 9. Delivery: requested stage only, current approved references, one compact prompt, measured user/provider text limit, no automatic language switch, no unsupported model controls, no claims of a successful generation before one exists.
 
+## Visual readability acceptance
+
+Apply the seven checks in `visual-storytelling.md` to the requested evidence level. Check who can see the trigger, approach/block access, relevant prop state and visible change after the action. Perform a caption-hidden pass; preserve requested captions in delivery. For each failure identify the missing visible evidence and smallest repair. Deliberately withheld motives can remain unresolved. A written instruction or still image cannot establish successful event timing; mark that output behavior UNVERIFIED.
+
 ## Targeted repair order
 
 First identify the actual critical fault. Default triage is identity and anatomical markings -> broken anatomy or prop ownership -> motion/contact -> route/camera -> emotional cause and payoff -> sound and pacing. A specific user-approved sound-only repair stays sound-only when visuals are accepted.

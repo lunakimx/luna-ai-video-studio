@@ -2,6 +2,8 @@
 
 Use this reference when the request is complex, reference-sensitive, continuity-heavy, multi-shot, or the user asks for maximum precision.
 
+Apply `visual-storytelling.md` across the production stages below. Its seven checks turn staging, gaze, props and causal order into a caption-hidden readability test while preserving intentional mystery and requested dialogue.
+
 ## 1. Production detection
 
 Infer or determine:
@@ -299,4 +301,3 @@ Before output, check for:
 - continuity reset
 
 Revise the prompt before sending it when clearer direction can prevent the failure.
-
