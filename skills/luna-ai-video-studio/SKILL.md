@@ -371,6 +371,12 @@ Do not add camera motion merely to make the result feel more cinematic. A locked
 
 Prevent accidental zooming, camera drift, speed mismatch, and broken parallax.
 
+## Selective whip-pan direction
+
+During camera planning, automatically consider a whip-pan for a motivated reaction, reveal, pursuit, or transition; use it only when it improves the beat. Read `references/whip-pan-direction.md` when a candidate exists or the user requests the technique. Apply this selection across general video work, the expanded v2 workflow, sitcom, action, and Fia & Theo mode without requiring a separate user reminder.
+
+Choose continuous-take camera rotation or an edited whip transition explicitly. Preserve no-cut and fixed-camera requests. Specify trigger, physical sweep, destination and feasible shot size, readable landing performance, timing, and continuity. Protect the first-second hook and visible contact; never use blur to hide missing action or impose a quota of cuts or whips. Include the reference's checks in pre-generation QC whenever a whip is used.
+
 ## Action framing and impact tracking
 
 For action, combat, confrontation, and fantasy-action work, read `references/action-framing.md` before planning storyboards, image briefs, final prompts, or reviewing results. Apply its five-point action-framing QC as part of mandatory pre-generation QC, not only when the user asks for a separate check.
