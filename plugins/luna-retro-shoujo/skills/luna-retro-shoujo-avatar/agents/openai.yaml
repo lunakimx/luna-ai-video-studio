@@ -1,0 +1,16 @@
+interface:
+  display_name: 루나 레트로 순정만화 프사
+  short_description: 큰 둥근 눈과 작은 입, 넓은 셀 색면으로 얼굴 특징을 살리는 레트로 순정만화 프사
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+  default_prompt: 'Use $luna-retro-shoujo-avatar to draw my portrait in the bundled
+    original retro shoujo style: large rounded eyes, short soft lower face, small
+    mouth and broad flat cel-colored hair, retaining my brows, eye tilt, spacing,
+    expression and hairstyle.'
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

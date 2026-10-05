@@ -1,0 +1,19 @@
+{
+  "name": "luna-public-skills",
+  "interface": {
+    "displayName": "Luna Public Skills"
+  },
+  "plugins": [
+    {
+      "name": "luna-retro-shoujo",
+      "source": {
+        "source": "local",
+        "path": "./plugins/luna-retro-shoujo"
+      },
+      "policy": {
+        "installation": "AVAILABLE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

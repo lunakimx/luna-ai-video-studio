@@ -1,0 +1,27 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "luna-retro-shoujo",
+  "version": "1.0.0",
+  "description": "Retro romantic cel-drawn portrait avatars with separate male and female reference guidance.",
+  "author": {
+    "name": "LunaKim"
+  },
+  "repository": "https://github.com/lunakimx/luna-ai-video-studio",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "루나 레트로 순정만화 프사",
+        "shortDescription": "사진을 레트로 순정만화 프사로",
+        "longDescription": "사진 속 얼굴 특징과 헤어스타일을 살려 정사각형 순정만화 프사를 만듭니다. 남자·여자 참고 그림, 넓은 머리 색면, 둥근 눈과 작은 입 표현을 포함합니다. 이미지 생성 기능이 있는 환경에서 사용합니다.",
+        "developerName": "LunaKim",
+        "category": "Productivity",
+        "defaultPrompt": "내 사진을 루나 레트로 순정만화 프사로 그려줘. 얼굴 특징과 헤어스타일을 살리고 참고 그림의 셀 채색을 따라줘.",
+        "logo": "assets/icon.svg",
+        "composerIcon": "assets/icon.svg"
+      },
+      "publication": {
+        "release_notes": "Initial public source package; includes current male reference selection and dark/light hair rendering guidance."
+      }
+    }
+  }
+}
