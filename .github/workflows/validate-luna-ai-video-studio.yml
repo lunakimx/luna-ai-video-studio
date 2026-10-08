@@ -30,3 +30,9 @@ jobs:
 
       - name: Validate Fia and Theo rules and fixtures
         run: python skills/luna-ai-video-studio/tests/test_fia_theo.py
+
+      - name: Install ffmpeg for output QC integration tests
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Validate output resolution QC
+        run: python skills/luna-ai-video-studio/tests/test_video_qc.py
