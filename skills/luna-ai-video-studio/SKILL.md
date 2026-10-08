@@ -620,6 +620,8 @@ Preserve accepted delivered dimensions, aspect ratio, framing, crop, and availab
 
 Keep the clean accepted handoff image unchanged unless the selected workflow requires a supported conversion. All detailed resolution rules and exceptions live in `references/model-adaptation.md`; read that file when dimensions or frame conditioning affect execution.
 
+After each authorized generation, upscale, subtitle render, or export, and before stitching, run the read-only output QC in `references/model-adaptation.md` with `scripts/video_qc.py` on the actual downloaded deliverable and every adjacent clip. Record exact dimensions, SAR/DAR, rotation, frame rates and timestamp cadence; block metadata failures and mark inaccessible files UNVERIFIED. Keep metadata PASS separate from visual crop/stretch review and upscale provenance. Never infer delivered resolution or restored detail from a filename, preview, or export preset.
+
 Before stitching directly connected clips, inspect the boundary. If the previous final frame and next opening frame duplicate the same visible moment, trim only the redundant overlap needed to remove a repeated hold or micro-stutter. Do not apply an automatic one-frame trim without inspecting the actual boundary.
 
 When audio is present, also inspect the boundary for duplicated transients, abrupt ambience changes, clipped decay tails, or a sudden change in acoustic perspective.
