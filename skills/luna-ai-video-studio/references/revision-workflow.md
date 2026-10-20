@@ -1,5 +1,9 @@
 # Revision workflow
 
+## Script dependency invalidation
+
+A story, timing, requirement or reference-role change invalidates dependent Mode S passes for new downstream work. Follow `script-approval-gate.md` to repair and re-review before image planning/generation; preserve unrelated approvals and existing assets. Review-only and edit-only limits remain binding.
+
 Use for additions, replacements, deletions, retiming, reordering, and retries. Preserve the approved intent while rebuilding affected dependencies.
 
 ## Active state

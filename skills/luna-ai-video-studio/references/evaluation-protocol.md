@@ -1,5 +1,9 @@
 # Evaluation Protocol
 
+## Mode S — Script review before images
+
+Before image composition or generation, apply `script-approval-gate.md`. This independent text gate requires all applicable checks and explicit requirements to PASS with beat evidence. Its result is `Script-validated`, bound to script and brief revisions. Mode A and its 4.2/5 average apply later to final prompts; they cannot substitute for Mode S. Script PASS is neither user approval nor generated-output evidence.
+
 Use this reference when the user asks for scoring, benchmarking, A/B comparison, proof of quality, or whether a prompt or generated result is production-ready.
 
 ## Purpose
