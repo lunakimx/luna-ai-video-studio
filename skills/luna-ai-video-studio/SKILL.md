@@ -219,6 +219,16 @@ For each request:
 20. When continuity, revision history, or accepted shot state matters, preserve the production ledger instead of rebuilding project state from memory.
 21. When a generated result fails, diagnose and repair the smallest responsible part before increasing prompt complexity.
 
+## Reference asset routing and connected-video extension
+
+For reference-heavy image-to-video work, multi-character scenes, accepted scene edits, or continuing an existing clip, read `references/reference-asset-handoff.md` before final image planning or video prompting.
+
+Assign each **real attached asset** one explicit job (authoritative ID, SCENE, START/END FRAME, PRIOR VIDEO, or AUDIO) and use only the actual interface tags and attachment order. Keep the public two-image default IMAGE 1 = ID and IMAGE 2 = SCENE when the user has not specified another mapping. Never invent `@img1`/`@video1` attachments or allow a character sheet to become the opening story frame by accident.
+
+For complex action spaces, use a stable person-free clean plate only if it reduces continuity failures, then make a motion-ready start image. Preserve the accepted character/source image and use localized edits for shoes, wardrobe, signs, or other isolated faults instead of rebuilding the scene. Optional front/rear/large-face sheets must defer to the authoritative original ID reference. Face crosshatching is an experiment requiring explicit approval, never a default.
+
+For direct continuation, prefer a verified prior-video extension/reference mode when the product supports it; otherwise use a clean accepted final frame where supported, or an honest text-only fallback. Preserve the actual ending state, motion phase, screen direction, camera motion, and sound across the seam. Do not force any example clip-duration recipe or override a one-take, the first-second hook, or model-specific limits.
+
 ## Script, storyboard, and image pipeline
 
 For short-form viral video work, do not jump directly from a rough idea to a final video prompt when intermediate planning would materially improve the result.
