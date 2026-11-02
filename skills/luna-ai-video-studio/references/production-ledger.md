@@ -1,5 +1,9 @@
 # Production Ledger
 
+## Script QC state
+
+Use `script-approval-gate.md` for optional additive `qc.script_reviews` records bound to exact script and active-brief revisions. Keep internal QC separate from `accepted` user decisions and generation authorization. Preserve historical approvals; mark dependent QC stale after changes without deleting accepted assets. No existing project is approved or migrated merely by installing this rule.
+
 Use this reference when a project spans multiple clips, requires continuity, or is being revised over time.
 
 Keep the ledger internal unless the user asks to see it.

@@ -1,5 +1,9 @@
 # Fia & Theo QC, Repair, and Evaluation
 
+## Script stage and EP.39
+
+Before planning images, apply `script-approval-gate.md`, including its EP.39 theft, post-loss hiss and motivated physical retaliation contract when those beats are requested. Reject voluntary snack handoff under a theft brief, absent requested reaction, and contact-free retaliation. Preserve later silent/noncombat overrides and unrelated approvals. Review the script again after repairs; image or prompt QC cannot stand in for script approval.
+
 Apply with `evaluation-protocol.md` before final delivery. Evaluate a written prompt, visible images and an actual video as different evidence types. A passing static test validates rule presence and fixture integrity, not model behavior or viewer retention.
 
 ## Evidence labels

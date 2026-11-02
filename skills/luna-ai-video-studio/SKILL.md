@@ -120,6 +120,12 @@ Before scripting, storyboarding, image acceptance, final prompting or output rev
 
 This gate applies to the expanded Luna workflow previously called v2, general video work, and Fia & Theo mode. Preserve intentional mystery, verbal jokes, sound-led reveals, exact dialogue and requested captions. Use the mode-specific examples only for the active project. A no-two-shot or one-take brief remains binding.
 
+## Mandatory script approval before images
+
+Before composing or generating images for a new or revised story, read `references/script-approval-gate.md` and run its independent Mode S review. Follow DRAFT → SCRIPT REVIEW → REPAIR/REVIEW → SCRIPT PASS → MINIMUM IMAGE PLAN → AUTHORIZED IMAGE GENERATION → IMAGE QA → FINAL PROMPT QC → AUTHORIZED VIDEO GENERATION. Check the first-second hook, cause/effect, motives, emotional responses, contact physics, each character's path, prop ownership, climax timing and ending reward. Any applicable REVISE or UNVERIFIED blocks advancement; a prompt-lint average cannot override it.
+
+Automatically repair and re-review within the stated retry limit. Bind the pass to the current script and brief revisions, preserve user approvals separately, and honor existing scope and execution authorization. Do not ask again when the user already delegated script self-review and image creation. Read the reference for minimum-image/tool handoff and EP.39 regression requirements. Report Script-validated only for reviewed text, never as generated-output proof.
+
 ## Mandatory pre-generation QC
 
 Every final generation prompt must pass an internal pre-generation QC before it is shown to the user, even when the user does not explicitly ask for QC.
@@ -202,7 +208,7 @@ For each request:
 3. Lock all reference-dependent details that must stay unchanged.
 4. For viral-first work, design the first 1.0 second before the rest of the timeline and pass the one-second hook gate before proceeding.
 5. Write or infer the story beat structure: hook, setup, action, escalation, reaction, and payoff.
-6. Decide whether storyboard images are needed.
+6. Pass the independent Mode S script gate before deciding whether storyboard images are needed.
 7. If images are needed, determine the minimum useful number of images.
 8. Decide whether a character sheet helps or harms the selected workflow.
 9. Design each storyboard frame or image asset around motion continuity, action clarity, and generation reliability rather than beauty alone.
@@ -237,8 +243,8 @@ Use this planning ladder when useful:
 
 1. hook concept
 2. one-line premise
-3. short script or beat sheet
-4. storyboard frame plan
+3. short script or beat sheet, followed by mandatory Mode S review and repair until SCRIPT PASS
+4. storyboard frame plan (only after current SCRIPT PASS)
 5. image-asset necessity check
 6. character-sheet necessity check
 7. image-generation brief
@@ -303,7 +309,7 @@ When an image must be generated, provide a brief that specifies:
 - why the image is needed for the final video;
 - what camera angle, pose, and composition are most useful for motion carry-forward.
 
-When the user explicitly asks to generate the image, use the available image-generation workflow and preserve all approved locks.
+When image generation is already authorized, require current SCRIPT PASS, then use the available image-generation workflow and preserve all approved locks. Follow the tool handoff in `references/script-approval-gate.md`; do not stop at an image brief when actual generation was requested and is available.
 
 ### Image QA
 

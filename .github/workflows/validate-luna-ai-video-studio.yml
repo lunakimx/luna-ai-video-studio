@@ -30,3 +30,6 @@ jobs:
 
       - name: Validate Fia and Theo rules and fixtures
         run: python skills/luna-ai-video-studio/tests/test_fia_theo.py
+
+      - name: Validate script approval rules and regression fixtures
+        run: python skills/luna-ai-video-studio/tests/test_script_gate.py
