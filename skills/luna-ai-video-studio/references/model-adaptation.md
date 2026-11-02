@@ -105,6 +105,54 @@ If generated clips arrive with different frame rates, treat normalization as an 
 
 A matching resolution does not guarantee a smooth transition when frame cadence differs.
 
+## Post-output resolution QC
+
+Keep all resolution examples and model-specific exceptions above. This gate validates an explicitly accepted delivery target; it does not impose 1080p on generation or silently resize source media. Probe the original download, upscale result, subtitle render and final export separately. Keep paths/checksums and the job/export settings in the accepted production ledger so a preview or older file cannot be mistaken for the deliverable.
+
+Use Python 3 and ffprobe on local files. Run from this skill's directory after every authorized output step and before delivery. Require a successful process exit before the next delivery step; do not report a check as run when ffprobe or the file is unavailable.
+
+```bash
+python scripts/video_qc.py final.mp4 --size 1080x1920 --aspect 9:16 --fps 30000/1001 > final.qc.json
+# Before joining, compare every clip at the accepted connection size/rate:
+python scripts/video_qc.py clip-b.mp4 --previous clip-a.mp4 --size 720x1280 --aspect 9:16 --fps 24 > connection.qc.json
+```
+
+Choose the actual accepted rational FPS, not a rounded UI label: 30000/1001 and 30 differ. Repeat `--previous` for more adjacent clips; run again on the joined output. The script reads only, emits JSON, and returns 0 for metadata PASS, 1 for a failed delivery gate, or 2 for unavailable/invalid input or probe errors. It does not perform a conversion. A local executor must invoke it after the render/download completes; this document alone does not install a provider webhook.
+
+For manual evidence collection, use:
+
+```bash
+ffprobe -v error -select_streams V:0 -show_streams -show_frames -show_entries 'stream:frame=best_effort_timestamp,width,height,sample_aspect_ratio' -of json final.mp4
+```
+
+Inspect the primary non-cover video stream (`V:0`); select the intended delivery track separately if the asset has multiple video tracks. Keep width/height (decoded image dimensions) separate from coded_width/coded_height (codec storage/alignment). Do not crop visible content merely because coded dimensions differ.
+
+Gate rules:
+
+- Require exact accepted width and height. For a 9:16 1080p target that is 1080×1920; 1920×1080 or a 512-pixel preview fails. Use explicit dimensions for 480p too: the tier name alone cannot establish the provider's portrait dimensions.
+- Require known SAR 1:1 for canonical delivery. Compute unrotated DAR = width / height × SAR; compare declared DAR when present. Missing DAR is reported and derived only when SAR is known. Unknown SAR never silently becomes 1:1.
+- Inspect both legacy rotate tags and display-matrix side data. Report effective DAR after 90°/270° rotation by taking its reciprocal. Flag conflicting, unreadable or nonzero rotations for normalization and reinspection. A 1920×1080 file rotated 90° can display vertically but is not a canonical 1080×1920 delivery. This conservative gate may flag otherwise playable sources; preserve them and handle orientation in the authorized edit workflow.
+- Check avg_frame_rate, r_frame_rate, time_base and all decoded frame timestamps. Matching rate labels alone do not establish CFR. Fail variable intervals, gaps, non-increasing timestamps, insufficient evidence, and per-frame dimensions/SAR changes. Allow only one timestamp tick of quantization with a sufficiently fine timebase.
+- Compare adjacent clips' size, SAR, effective DAR, rotation and rational FPS. A different timebase is a warning to conform in the editor, not proof of a speed change. Resolve it before stream-copy concatenation. Do not silently force FPS, duplicate/drop frames or interpolate motion; use an authorized conform step, then recheck cadence and boundary motion/audio.
+
+### Stretch and crop review
+
+Metadata PASS is not final visual approval. A stretched subject or destructive crop can already be baked into perfectly valid 1080×1920 pixels. Compare source and output opening/middle/ending frames and both sides of each join; inspect faces, circles, body proportions, edge landmarks, intended head/foot room and motion at the boundary. Keep `visual_status: UNVERIFIED` until this separate review is actually done; document its result in the ledger.
+
+Never force arbitrary input directly through `scale=1080:1920`, set an aspect tag to disguise wrong pixels, or use `setsar=1` alone to repair an anamorphic image. Resolve source SAR and orientation first, scale uniformly to fit, then pad only if allowed. Crop-to-fill needs an accepted crop that preserves intended content; never choose it silently. A verified square-pixel, zero-rotation source with the same aspect can be scaled proportionally to the target without cropping. Reprobe and visually inspect the result in the target player/editor; do not rotate twice when the decoder already applied rotation.
+
+### Upscale versus export size
+
+Record these separately: source measured dimensions; requested delivery dimensions; operation/tool/model/settings or job ID; final measured dimensions; visual review. Preserve the source and inspect the actual returned asset.
+
+- A 480p/720p source exported at 1080×1920 has a larger raster if scaling was applied. Ordinary Lanczos/bicubic scaling is resampling; the export setting alone provides no evidence of detail restoration.
+- An enhancement/super-resolution workflow from 480p/720p to 1080p needs evidence of that completed operation and a source/output visual comparison. It may infer new detail, introduce artifacts or fail to improve quality. Never claim recovered original detail solely from dimensions.
+- A native 1080p generation, a resampled 1080p export, and an enhancement upscale can have identical ffprobe dimensions. ffprobe cannot distinguish their provenance. Keep `upscale_provenance: UNVERIFIED` in the automatic report; establish it from actual job records, never a filename or UI badge.
+
+For the reported 2026-10-07 incidents, the actual affected files were not inspected in this patch investigation. Wrong resize/crop settings, SAR handling, rotation handling, preview selection and source/output mix-ups are hypotheses only. No exact cause has been established.
+
+Reference: [ffprobe documentation](https://ffmpeg.org/ffprobe.html) and [FFmpeg scale/setsar documentation](https://ffmpeg.org/ffmpeg-filters.html). Metadata QC does not replace decoded-frame review or prove a seamless one-take result.
+
 ## Resolution decision order
 
 When continuity and delivery stability matter, decide in this order:
