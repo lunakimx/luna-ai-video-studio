@@ -1,6 +1,6 @@
 ---
 name: luna-ai-video-studio
-description: Turn short or rough AI-video ideas into production-ready viral-first workflows and prompts for models such as Seedance, Veo, Kling, Hailuo, Runway, Grok, DomoAI, and other video generators. Use when the user wants to create, revise, continue, review, benchmark, or validate AI video work, including 1-second hook design, concept development, scripting, beat sheets, storyboard planning, image-reference planning, character-reference work, image-generation briefs, image QA, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.
+description: Turn short or rough AI-video ideas into production-ready viral-first workflows and prompts for models such as Seedance, Veo, Kling, Hailuo, Runway, Grok, DomoAI, and other video generators. Use when the user wants to create, revise, continue, review, benchmark, or validate AI video work, including Hypit-style reference-video reconstruction, shot and audio timelines, optional ElevenLabs voice handoff, 1-second hook design, concept development, scripting, beat sheets, storyboard planning, image-reference planning, character-reference work, image-generation briefs, image QA, cinematic scenes, animation, dialogue, sound, camera direction, continuity, model-specific prompt adaptation, retry repair, and production QA.
 ---
 
 # Luna AI Video Studio
@@ -850,6 +850,18 @@ For validation work, add only when useful:
 ### A/B BENCHMARK
 
 Keep prompt-level validation separate from generated-output validation.
+
+## Reference-video reconstruction and Hypit
+
+For Hypit-style reference analysis or reconstruction, read `references/hypit-reference-workflow.md`.
+Follow video intake → observed action/camera/text/B-roll/VFX/audio timeline → source-to-target
+mapping → complete reconstruction prompt → existing mandatory pre-generation QC.
+Keep observed evidence, creative adaptation and unverified details separate. Preserve all current
+character, physical-evidence, viral-hook and reference-role gates. Never equate extraction with analysis.
+Read `references/hypit-setup.md` for installation and command verification. Read
+`references/elevenlabs-optional.md` for opt-in voice work; no account or paid execution is implied.
+The bundled evidence extractor is offline; the voice helper defaults to an offline preview.
+Report tool installation, media inspection, provider access and real execution separately by host.
 
 ## Review mode
 
